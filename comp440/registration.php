@@ -36,10 +36,17 @@
     </div>
     <div>
         
-        <label for="password">Password :  </label>
-        <input type="text" name="password"required>
+        <label for="password1">Password :  </label>
+        <input type="text" name="password1"required>
 
     </div>
+    <div>
+        
+        <label for="password2">Confirm Password : </label>
+        <input type="text" name="password2"required>
+
+    </div>
+
     <button type="submit" name="register_user">Submit</button>
 
     <p>Already a user? <a href="login.php"><b>Log In</b></a></p>
