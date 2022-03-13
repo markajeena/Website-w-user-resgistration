@@ -11,9 +11,10 @@ $db = mysqli_connect('localhost','root','','user_registration') or die("No Conne
 //Registration
 $username = mysqli_real_escape_string($db, $_POST['username']);
 $email = mysqli_real_escape_string($db, $_POST['email']);
-$password = mysqli_real_escape_string($db, $_POST['password']);
+$password1 = mysqli_real_escape_string($db, $_POST['password1']);
 $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-$lastname = mysqli_real_escape_string($db, $_POST['password']);
+$lastname = mysqli_real_escape_string($db, $_POST['lastname']);
+$password2 = mysqli_real_escape_string($db, $_POST['password2']);
 
 //form validdation
 
@@ -24,14 +25,18 @@ if(empty($email)) {
     array_push($errors, "Email is required");
 }
 if(empty($lastname)) {
-    array_push($errors, "lastname is required");
+    array_push($errors, "Last Name is required");
 }
 if(empty($firstname)) {
-    array_push($errors, "firstname is required");
+    array_push($errors, "First Name is required");
 }
-if(empty($password)) {
-    array_push($errors, "password is required");
+if(empty($password1)) {
+    array_push($errors, "Password is required");
 }
+if($password1 != $password2){
+    array_push($errors, "Password Does Not Match");
+}
+
 
 // check db for existing User Name
 $user_check_query = "SELECT * FROM user WHERE username = '$username' or email = '$email' LIMIT 1";
@@ -49,11 +54,11 @@ if($user){
 
 //Register the user if there is no error 
 if(count($errors) == 0){
-    $password = password_hash($password,PASSWORD_DEFAULT); //encryption
+    $password = password_hash($password1,PASSWORD_DEFAULT); //encryption
     print $password;
-    $query = "INSERT INTO user (username, password, firstname, lastname, email) VALUES ('$username','$password','$firstname','$lastname','$email')";
+    $query = "INSERT INTO user (username, password1, password2, firstname, lastname, email) VALUES ('$username','$password','$password2','$firstname','$lastname','$email')";
 
-    mysqli_query($db,$query);
+    mysqli_query($db, $query);
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now Logged In";
 
@@ -74,9 +79,9 @@ if(isset($_POST['login_user'])){
         array_push($errors, "Password is requried");
     }   
     if(count($errors) == 0){
-        $password = password_hash($password,PASSWORD_DEFAULT); //encryption
+        $password = password_hash($password1,PASSWORD_DEFAULT); //encryption
 
-        $query = "SELECT * FROM user WHERE username='$username' AND password = '$password ";
+        $query = "SELECT * FROM user WHERE username='$username' AND password1 = '$password' ";
         $results = mysqli_query($db,$query);
 
         if(mysqli_num_rows($results)){
