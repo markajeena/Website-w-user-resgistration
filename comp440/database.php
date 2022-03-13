@@ -13,7 +13,7 @@ $username = mysqli_real_escape_string($db, $_POST['username']);
 $email = mysqli_real_escape_string($db, $_POST['email']);
 $password = mysqli_real_escape_string($db, $_POST['password']);
 $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-$password = mysqli_real_escape_string($db, $_POST['password']);
+$lastname = mysqli_real_escape_string($db, $_POST['password']);
 
 //form validdation
 
