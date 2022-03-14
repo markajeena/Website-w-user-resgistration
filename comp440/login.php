@@ -1,4 +1,5 @@
-<?php include('database.php') ?>
+<?php include('database.php');
+$login_user=true ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,8 @@
             <h2>Login</h2>
 
 </div>
-<form action="login.php" method="post">
+<form autocomplete="off" action="login.php" method="post">
+    <?php include('errors.php') ?>
 
     <div>
 
@@ -20,11 +22,11 @@
     </div>
     <div>
         
-        <label for="password1">Password :  </label>
+        <label for="password1">Password:  </label>
         <input type="text" name="password1" required>
 
     </div>
-    <button type="submit" name="login_user">Submit</button>
+    <button type="submit" name="login_user" onclick="<?php include('errors.php') ?>">Submit</button>
 
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
