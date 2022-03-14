@@ -9,12 +9,12 @@ $errors = array();
 $db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
 
 //Registration
-$username = mysqli_real_escape_string($db, $_POST['username']);
-$email = mysqli_real_escape_string($db, $_POST['email']);
-$password1 = mysqli_real_escape_string($db, $_POST['password1']);
-$firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-$lastname = mysqli_real_escape_string($db, $_POST['lastname']);
-$password2 = mysqli_real_escape_string($db, $_POST['password2']);
+$username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
+$email = mysqli_real_escape_string($db, $_POST['email'] ?? "");
+$password1 = mysqli_real_escape_string($db, $_POST['password1'] ?? "");
+$firstname = mysqli_real_escape_string($db, $_POST['firstname'] ?? "");
+$lastname = mysqli_real_escape_string($db, $_POST['lastname'] ?? "");
+$password2 = mysqli_real_escape_string($db, $_POST['password2'] ?? "");
 
 //form validdation
 
