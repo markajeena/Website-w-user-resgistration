@@ -20,13 +20,13 @@
     </div>
     <div>
         
-        <label for="password">Password :  </label>
-        <input type="text" name="password" required>
+        <label for="password1">Password :  </label>
+        <input type="text" name="password1" required>
 
     </div>
     <button type="submit" name="login_user">Submit</button>
 
-    <p>Not A User? <a href="login.php"><b>Register Here</b></a></p>
+    <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
 </div>
 </body>
