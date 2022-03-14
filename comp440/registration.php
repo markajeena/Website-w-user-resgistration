@@ -1,4 +1,5 @@
-<?php include('database.php') ?>
+<?php include('database.php');
+$login_user=NULL ?>
 <!DOCTYPE html>
 <html>
 <head>
