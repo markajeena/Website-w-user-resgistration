@@ -16,8 +16,8 @@ $firstname = mysqli_real_escape_string($db, $_POST['firstname'] ?? "");
 $lastname = mysqli_real_escape_string($db, $_POST['lastname'] ?? "");
 $password2 = mysqli_real_escape_string($db, $_POST['password2'] ?? "");
 
-//form validdation
-
+if(!isset($_POST['login_user'])){
+//form validation
 if(empty($username)) {
     array_push($errors, "Username is required");
 }
@@ -48,9 +48,9 @@ $results= mysqli_query($db, $user_check_query);
 $user = mysqli_fetch_assoc($results);
 
 if($user){
-    if($user['username'] === $username){array_push($errors, "Username already exits");
+    if($user['username'] === $username){array_push($errors, "Username already exists");
     }
-    if($user['email'] === $email){array_push($error, "This Email has already been registered");
+    if($user['email'] === $email){array_push($errors, "This Email has already been registered");
     }
 
 }
@@ -65,10 +65,10 @@ if(count($errors) == 0){
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now Logged In";
 
-    header("location : index.php");
+    header("index.php");
 
 }
-
+}
 //Login User
 
 if(isset($_POST['login_user'])){
@@ -90,7 +90,7 @@ if(isset($_POST['login_user'])){
         if(mysqli_num_rows($results)){
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "Logged in Successfully";
-            header("location: index.php");
+            header("index.php");
         }
         else{
             array_push($errors, "Wrong Username or Password");
