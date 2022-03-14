@@ -1,5 +1,10 @@
 <?php include('database.php');
-$login_user=NULL ?>
+$login_user=NULL; 
+if(count($errors)>=6)
+{
+    $errors=array();
+}
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +16,7 @@ $login_user=NULL ?>
             <h2>Register</h2>
 
 </div>
-<form action="registration.php" method="post">
+<form autocomplete="off" action="registration.php" method="post">
     <?php include('errors.php') ?>
 <div>
         
@@ -48,7 +53,7 @@ $login_user=NULL ?>
 
     </div>
 
-    <button type="submit" name="register_user">Submit</button>
+    <button type="submit" name="register_user" >Submit</button>
 
     <p>Already a user? <a href="login.php"><b>Log In</b></a></p>
 </form>
