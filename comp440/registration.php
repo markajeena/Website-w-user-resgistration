@@ -11,7 +11,7 @@
 
 </div>
 <form action="registration.php" method="post">
-    <?php include('error.php') ?>
+    <?php include('errors.php') ?>
 <div>
         
         <label for="firstname">First Name: </label>
