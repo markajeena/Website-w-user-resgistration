@@ -1,5 +1,10 @@
 <?php include('database.php');
-$login_user=true ?>
+$login_user=true; 
+if(count($errors)>2)
+{
+    $errors=array();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +31,27 @@ $login_user=true ?>
         <input type="text" name="password1" required>
 
     </div>
-    <button type="submit" name="login_user" onclick="<?php include('errors.php') ?>">Submit</button>
+    <button type="submit" name="login_user">Submit</button>
+    <button type="button" name="Database_Initialization" value="1">Initialize Database</button>
 
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
 </div>
 </body>
 </html>
+<?php    
+        if(isset($_POST['Database_Initialization'])){
+    $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+     // Load and explode the sql file
+     $f = fopen('university.sql',"r+");
+     $sqlFile = fread($f,filesize('university.sql'));
+     $sqlArray = explode(';',$sqlFile);
+           
+     //Process the sql file by statements
+     foreach ($sqlArray as $stmt) {
+       if (strlen($stmt)>3){
+            $result = mysqli_query($con, $stmt);
+           }
+      }
+    }
+?>
