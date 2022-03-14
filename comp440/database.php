@@ -4,7 +4,7 @@ define('WP_MEMORY_LIMIT', '512M');
 $username= "";
 $email="";
 $errors = array();
-
+$login_user=true; 
 //connect_db
 $db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
 
@@ -63,9 +63,10 @@ if(count($errors) == 0){
 
     mysqli_query($db, $query);
     $_SESSION['username'] = $username;
+    $_SESSION['firstname'] = $firstname;
     $_SESSION['success'] = "You are now Logged In";
 
-    header("index.php");
+    header("Location:index.php");
 
 }
 }
@@ -74,6 +75,7 @@ if(count($errors) == 0){
 if(isset($_POST['login_user'])){
     $username = mysqli_real_escape_string($db,$_POST['username'] ?? "");
     $password = mysqli_real_escape_string($db,$_POST['password1'] ?? "");
+    $firstname =  mysqli_real_escape_string($db,$_POST['firstname'] ?? "");
 
     if(empty($username)){
         array_push($errors, "Username is requried");
@@ -86,14 +88,17 @@ if(isset($_POST['login_user'])){
 
         $query = "SELECT * FROM user WHERE username='$username' AND password1 = '$password' ";
         $results = mysqli_query($db,$query);
+        $user = mysqli_fetch_assoc($results);
 
         if(mysqli_num_rows($results)){
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['success'] = "Logged in Successfully";
-            header("index.php");
+            header("Location:index.php");
         }
         else{
             array_push($errors, "Wrong Username or Password");
         }
         }
     }
+//Initialize DB
