@@ -1,5 +1,5 @@
 <?php session_start();
-
+define('WP_MEMORY_LIMIT', '512M');
 //init vars
 $username= "";
 $email="";
@@ -33,6 +33,9 @@ if(empty($firstname)) {
 if(empty($password1)) {
     array_push($errors, "Password is required");
 }
+if(empty($password2)) {
+    array_push($errors, "Confirm Password is required");
+}
 if($password1 != $password2){
     array_push($errors, "Password Does Not Match");
 }
@@ -54,32 +57,32 @@ if($user){
 
 //Register the user if there is no error 
 if(count($errors) == 0){
-    $password = password_hash($password1,PASSWORD_DEFAULT); //encryption
-    print $password;
-    $query = "INSERT INTO user (username, password1, password2, firstname, lastname, email) VALUES ('$username','$password','$password2','$firstname','$lastname','$email')";
+    //$password = password_hash($password1,PASSWORD_DEFAULT); //encryption
+    //print $password;
+    $query = "INSERT INTO user (username, password1, firstname, lastname, email) VALUES ('$username','$password1','$firstname','$lastname','$email')";
 
     mysqli_query($db, $query);
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now Logged In";
 
-    header('location: index.php');
+    header("location : index.php");
 
 }
 
 //Login User
 
 if(isset($_POST['login_user'])){
-    $username = mysqli_real_escape_string($db,$_POST['username']);
-    $password = mysqli_real_escape_string($db,$_POST['password']);
+    $username = mysqli_real_escape_string($db,$_POST['username'] ?? "");
+    $password = mysqli_real_escape_string($db,$_POST['password1'] ?? "");
 
     if(empty($username)){
         array_push($errors, "Username is requried");
     }
     if(empty($password)){
         array_push($errors, "Password is requried");
-    }   
+    }
     if(count($errors) == 0){
-        $password = password_hash($password1,PASSWORD_DEFAULT); //encryption
+        //$password = password_hash($password1,PASSWORD_DEFAULT); //encryption
 
         $query = "SELECT * FROM user WHERE username='$username' AND password1 = '$password' ";
         $results = mysqli_query($db,$query);
