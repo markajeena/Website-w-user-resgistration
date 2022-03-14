@@ -8,7 +8,7 @@ if(isset($_SESSION['username'])){
 if(isset($_GET['logout'])){
     session_destroy();
     unset($_SESSION['username']);
-    header('location : login.php');
+    header("location : login.php");
 }
 ?>
 
@@ -32,6 +32,7 @@ if(isset($_GET['logout'])){
 
 <?php if(isset($_SESSION['username'])) : ?>
     <h3> Welcome <strong><?php echo $_SESSION['firstname']; ?></strong></h3>
+    
     <button><a href="index.php?logout='1'"></a></button>
 
     <?php endif ?>
