@@ -8,17 +8,19 @@ if(count($errors)>2)
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Log In</title>
+    <title>login</title>
 </head>
+<style>body {background-image: url("pexels-photo.jpg")}</style>
 <body>
     <div class="container">
         <div class="header">
             <h2>Login</h2>
-
+            <style>h2 {text-align: center; }</style>
 </div>
 <form autocomplete="off" action="login.php" method="post">
     <?php include('errors.php') ?>
-
+    <style>form {text-align: center}</style>
+    <style>input{margin: 25px 25px 25px 25px}</style>
     <div>
 
         <label for="username">Username: </label>
