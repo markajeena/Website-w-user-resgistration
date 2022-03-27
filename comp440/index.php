@@ -15,8 +15,8 @@ if(isset($_GET['logout'])){
 
 <!DOCTYPE html>
 <html>
-    <head>Home Page</head>
     <body>
+    <style>h1 { text-align: center; color: white} h3 {text-align: center; color: white}</style>
         <h1>Home</h1>
         <?php
         if(isset($_SESSION['success'])) : ?>
@@ -33,7 +33,7 @@ if(isset($_GET['logout'])){
 
 <?php if(isset($_SESSION['firstname'])) : ?>
     <h3> Welcome <strong><?php echo $_SESSION['firstname']; ?></strong></h3>
-    
+    <style>body { text-align: center; background-image: url("no-michael-scott.gif")}</style>
     
     <button><a href="index.php?logout='1'">Log Out</a></button>
 
