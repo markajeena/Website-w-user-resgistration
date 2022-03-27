@@ -1,4 +1,4 @@
-<<?php include('server.php') ?>
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,18 +6,22 @@
     <title>Registration</title>
   </head>
   <body>
-
+  <style>
+      body { background-color: rgba(0, 128, 0, 0.3) }
+    </style>
     <div class="container">
 
         <div class="header">
 
           <h2>Register</h2>
-
+          <style>
+            h2 { width: 300px; margin: auto; text-align: center}
+          </style>
         </div>
 
         <form action="registration.php" method= "post">
-
-          <<?php include('errors.php') ?>
+          <style> form { width: 300px; margin: auto; text-align: center}</style>
+          <?php include('errors.php') ?>
 
           <div>
 
