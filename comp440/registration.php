@@ -55,8 +55,29 @@ if(count($errors)>=6)
 
     </div>
 
-    <button type="submit" name="register_user" >Submit</button>
+    <button class="button" id="button" type="submit" name="register_user" >Submit</button>
+    <style>
+        button{
+            margin-left: 5%;
+            border: none;
+            transition: .4s ease-in;
+            z-index: 1;
+            font-size: 16px;
+            background-color: white;
+            color: black;
+        }
+        button::before,
+        button::after{
+            position: absolute;
+            content: "";
+            z-index: -1;
+        }
+        .button:hover {
+            background: #5CDEFF;
+            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
+        }
 
+    </style>
     <p>Already a user? <a href="login.php"><b>Log In</b></a></p>
 </form>
 </div>
