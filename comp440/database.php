@@ -76,6 +76,8 @@ if(isset($_POST['login_user'])){
     $username = mysqli_real_escape_string($db,$_POST['username'] ?? "");
     $password = mysqli_real_escape_string($db,$_POST['password1'] ?? "");
     $firstname =  mysqli_real_escape_string($db,$_POST['firstname'] ?? "");
+    $lastname = mysqli_real_escape_string($db,$_POST['lastname'] ?? "");
+    $email = mysqli_real_escape_string($db,$_POST['email'] ?? "");
 
     if(empty($username)){
         array_push($errors, "Username is requried");
