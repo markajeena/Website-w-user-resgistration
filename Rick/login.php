@@ -5,7 +5,9 @@
     <title>Login</title>
   </head>
   <body>
-
+    <style>
+        body { background-color: rgba(0, 128, 0, 0.3) }
+      </style>
     <div class="container">
 
         <div class="header">
