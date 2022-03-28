@@ -25,7 +25,9 @@ if(isset($_GET['logout'])){
      <title> Welcome! </title>
    </head>
    <body>
-
+     <style>
+         body { background-color: rgba(0, 128, 0, 0.3) }
+       </style>
      <h1> Now Displaying Current User </h1>
 
      <?php if(isset($_SESSION['username'])) : ?>
