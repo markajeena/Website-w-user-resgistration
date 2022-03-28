@@ -14,13 +14,9 @@
         <div class="header">
 
           <h2>Register</h2>
-          <style>
-            h2 { width: 300px; margin: auto; text-align: center}
-          </style>
         </div>
 
         <form action="registration.php" method= "post">
-          <style> form { width: 300px; margin: auto; text-align: center}</style>
           <?php include('errors.php') ?>
 
           <div>
