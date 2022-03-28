@@ -33,7 +33,29 @@ if(count($errors)>2)
         <input type="text" name="password1" required>
 
     </div>
-    <button type="submit" name="login_user">Submit</button>
+    <button class="button" id="button" type="submit" name="login_user">Submit</button>
+    <style>
+        button{
+            position:relative;
+            border: none;
+            transition: .4s ease-in;
+            z-index: 1;
+            font-size: 16px;
+            background-color: white;
+            color: black;
+        }
+        button::before,
+        button::after{
+            position: absolute;
+            content: "";
+            z-index: -1;
+        }
+        .button:hover {
+            background: #5CDEFF;
+            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
+        }
+
+    </style>
     <!--<button type="button" name="Database_Initialization" value="1">Initialize Database</button> -->
 
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
