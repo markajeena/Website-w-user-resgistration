@@ -56,7 +56,7 @@ if(count($errors)>2)
         }
 
     </style>
-    <!--<button type="button" name="Database_Initialization" value="1">Initialize Database</button> -->
+    <button type="button" name="Database_Initialization" value="1">Initialize Database</button>
 
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
