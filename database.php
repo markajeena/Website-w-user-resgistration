@@ -129,6 +129,7 @@ if(isset($_REQUEST['id'])){
     $query = mysqli_query($db, $sql);
 }
 
+//Delete Blog
 if(isset($_REQUEST['delete'])){
     $id = $_REQUEST['id'];
     $sql = "DELETE FROM blog WHERE id = $id";
@@ -137,14 +138,15 @@ if(isset($_REQUEST['delete'])){
     exit();
 }
 
+//Update Blog
 if(isset($_REQUEST['update'])){
     $id = $_REQUEST['id'];
     $subject = $_REQUEST['subject'];
     $description = $_REQUEST['description'];
 
-    $sql = "UPDATE blog SET subject = 'subject', description = 'description' WHERE id = $id";
+    $sql = "UPDATE blog SET subject = '$subject', description = '$description' WHERE id = $id";
     mysqli_query($db, $sql);
 
-    header("Location : index.php");
+    header("Location: index.php");
     exit();
 }

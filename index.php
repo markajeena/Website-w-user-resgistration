@@ -83,7 +83,7 @@ if(isset($_GET['logout'])){
                     <style>
                        .container{
                             position:relative;
-                            margin-left: 910px;
+                            margin-left: 46%;
                             margin-bottom: 50px;
                             width: 250px;
                             padding: 16px 0;

@@ -19,7 +19,7 @@
             <form method="POST">
                 <input type="text" hidden value='<?php echo $q['id']?>' name="id">
                 <input type="text" placeholder="Blog Title" class="form" name="subject" value="<?php echo $q['subject']?>">
-                <textarea name="description" class="form" cols="30" rows="10"><?php echo $q['description']?></textarea>
+                <textarea name="description" class="form"><?php echo $q['description']?></textarea>
                 <button class="button" name="update">Update</button>
             </form>
         <?php } ?>    
