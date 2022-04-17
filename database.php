@@ -122,3 +122,29 @@ if(isset($_REQUEST["post"])){
     header("Location: index.php?info=added");
     exit();
 }
+//Get blog data based on id
+if(isset($_REQUEST['id'])){
+    $id = $_REQUEST['id'];
+    $sql = "SELECT * FROM blog WHERE id = $id";
+    $query = mysqli_query($db, $sql);
+}
+
+if(isset($_REQUEST['delete'])){
+    $id = $_REQUEST['id'];
+    $sql = "DELETE FROM blog WHERE id = $id";
+    mysqli_query($db, $sql);
+    header("Location: index.php");
+    exit();
+}
+
+if(isset($_REQUEST['update'])){
+    $id = $_REQUEST['id'];
+    $subject = $_REQUEST['subject'];
+    $description = $_REQUEST['description'];
+
+    $sql = "UPDATE blog SET subject = 'subject', description = 'description' WHERE id = $id";
+    mysqli_query($db, $sql);
+
+    header("Location : index.php");
+    exit();
+}

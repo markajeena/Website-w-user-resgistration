@@ -77,13 +77,14 @@ if(isset($_GET['logout'])){
             <?php foreach($query as $q){?>
                         <div class="container">
                         <h5><?php echo $q['subject'];?></h5>
-                        <p><?php echo $q['description'];?></h5>
-                        <div><a href="" class="button">Read More <span class="danger">&rarr;</span></a></div>
+                        <p><?php echo substr($q['description'], 0 ,50);?>...</h5>
+                        <div><a href="view.php?id=<?php echo $q['id']?>" class="button">Read More<span class="danger">&rarr;</span></a></div>
                     </div>
                     <style>
                        .container{
                             position:relative;
                             margin-left: 910px;
+                            margin-bottom: 50px;
                             width: 250px;
                             padding: 16px 0;
                             box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
