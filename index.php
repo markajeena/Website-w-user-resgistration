@@ -1,4 +1,6 @@
 <?php
+include('database.php');
+ini_set("display_errors", "off");
 session_start(); 
 unset($errors);
 $errors = array();
@@ -41,15 +43,18 @@ if(isset($_GET['logout'])){
 <?php if(isset($_SESSION['firstname'])) : ?>
     <h3> Welcome <strong><?php echo $_SESSION['firstname']; ?></strong>,</h3>
     <style>body { text-align: center; background-image: url("pexels-photo.jpg")}</style>
-    <div class="container"><button id="button" class="button"><a href="create.php">Post a new blog</a></button></div>
+    <div><button id="button" class="button"><a href="create.php">Post a new blog</a></button></div>
     <button id="button" class="button"><a href="index.php?logout='1'">Log Out</a></button>
     <style>
         a{
             text-decoration: none;
         }
         button{
+            margin-bottom:1%;
             position: relative;
-            border: none;
+            border: solid;
+            border-color: #5CDEFF;
+            border-radius: 10px;
             transition: .4s ease-in;
             z-index: 1;
             font-size: 16px;
@@ -69,18 +74,21 @@ if(isset($_GET['logout'])){
 
     </style>
     <?php endif ?>
-        <div class= "row">
             <?php foreach($query as $q){?>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title"><?php echo $q['subject'];?></h5>
-                        <p class="card-text"><?php echo $q['description'];?></h5>
-                        <p class="card-text"><?php echo $q['tags'];?></p>
-                        <a href="" class="button">Read More <span class="danger">&rarr;</span></a>
-                        </div>
+                        <div class="container">
+                        <h5><?php echo $q['subject'];?></h5>
+                        <p><?php echo $q['description'];?></h5>
+                        <div><a href="" class="button">Read More <span class="danger">&rarr;</span></a></div>
                     </div>
-                </div>
+                    <style>
+                       .container{
+                            position:relative;
+                            margin-left: 910px;
+                            width: 250px;
+                            padding: 16px 0;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+                       }
+                    </style>
             <?php } ?>
         </div>
 

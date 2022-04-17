@@ -5,6 +5,8 @@ $username= "";
 $email="";
 $errors = array();
 $login_user=true; 
+$subject="";
+$description="";
 //connect_db
 $db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
 
@@ -103,4 +105,20 @@ if(isset($_POST['login_user'])){
         }
         }
     }
-//Initialize DB
+//Create A Blog
+$subject = mysqli_real_escape_string($db, $_POST['subject'] ?? "");
+$description = mysqli_real_escape_string($db, $_POST['description'] ?? "");
+
+$sql = "SELECT * FROM blog";
+$query = mysqli_query($db, $sql);
+
+if(isset($_REQUEST["post"])){
+    $subject = $_REQUEST["subject"];
+    $description =$_REQUEST["description"];
+
+    $sql = "INSERT INTO blog(subject, description) VALUES ('$subject', '$description')";
+    mysqli_query($db, $sql);
+
+    header("Location: index.php?info=added");
+    exit();
+}
