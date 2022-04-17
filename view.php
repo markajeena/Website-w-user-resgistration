@@ -38,7 +38,11 @@
         <?php } ?>    
 
         <a href="index.php" class="button">Go Home</a>
+        <div>
+        <textarea name="comment" class="comment" placeholder="Enter Comment..."></textarea></div>
 
+    <div><button name="submit" class="submit">Submit</button></div>
+    
    </div>
 
 
