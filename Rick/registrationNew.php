@@ -20,28 +20,28 @@
 
             <input
               type="text"
-              name="firstname"
-              placeholder="First name"
+              name="username"
+              placeholder="Username"
               required
             />
+            <input
+              type="text"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <input type="text" name="password1" placeholder="Confirm Password" required />
+            <input type="text" name="firstname" placeholder="First name" required />
             <input
               type="text"
               name="lastname"
               placeholder="Last name"
               required
             />
-            <input type="text" name="email" placeholder="Email" required />
-            <input type="text" name="usernam" placeholder="Username" required />
             <input
               type="text"
-              name="password1"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="text"
-              name="password2"
-              placeholder="Confirm Passowrd"
+              name="email"
+              placeholder="Email"
               required
             />
             <button type="submit" name="register_user">Submit</button>
@@ -54,4 +54,5 @@
       </div>
     </body>
   </body>
+</html>
 </html>
