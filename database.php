@@ -123,7 +123,7 @@ if(isset($_REQUEST["post"])){
 
     $sql = "INSERT INTO blog(subject, description, username) VALUES ('$subject', '$description', '$username')";
     mysqli_query($db, $sql);
-    $sql = "INSERT INTO tags('tag') VALUES ('$tag')";
+    $sql = "INSERT INTO tags(tag) VALUES ('$tag')";
     mysqli_query($db, $sql);
     header("Location: index.php?info=added");
     exit();
