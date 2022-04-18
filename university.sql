@@ -24,11 +24,12 @@ INSERT INTO `user` VALUES ('comp440','pass1234', 'Mark', 'Ajina', 'markajina@sex
 --
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blogid` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `description` LONGTEXT COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
-  --KEY `user` (`user`),
+  KEY `user_id` (`user_id`),
   --CONSTRAINT `course_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL,
 );
 --
@@ -41,10 +42,12 @@ INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog'),('105','Nice t
 --
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commentid` int(11) NOT NULL AUTO_INCREMENT,
   `comment` MEDIUMTEXT COLLATE utf8mb4_general_ci NOT NULL,
+  `blogid` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
-  --KEY `dept_name` (`dept_name`),
+  KEY `user_id` (`user_id`),
   --CONSTRAINT `instructor_ibfk_1` FOREIGN KEY (`dept_name`) REFERENCES `department` (`dept_name`) ON DELETE SET NULL,
   --CONSTRAINT `instructor_chk_1` CHECK ((`salary` > 29000))
 );
