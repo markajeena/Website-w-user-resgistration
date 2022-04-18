@@ -78,7 +78,7 @@ if(isset($_GET['logout'])){
                         <div class="container">
                         <h5><?php echo $q['subject'];?></h5>
                         <p><?php echo substr($q['description'], 0 ,50);?>...</h5>
-                        <div><a href="view.php?id=<?php echo $q['id']?>" class="button">Read More<span class="danger">&rarr;</span></a></div>
+                        <div><a href="view.php?blogid=<?php echo $q['blogid']?>" class="button">Read More<span class="danger">&rarr;</span></a></div>
                     </div>
                     <style>
                        .container{

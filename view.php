@@ -38,13 +38,17 @@
         <?php } ?>    
 
         <a href="index.php" class="button">Go Home</a>
-        <p><?php echo $q['tag'];?></p>
-        <div>
-        <textarea name="comment" class="comment" placeholder="Enter Comment..."></textarea></div>
-
-    <div><button name="submit" class="submit">Submit</button></div>
     
    </div>
+   <div>
+        <a href="comment.php?blogid=<?php echo $q['blogid']?>"><button> Add a Comment </button></a>
+      </div>
+
+      <?php foreach ($query1 as $q) {?>
+
+        <p> Comment: <?php echo $q['comment']; ?></p>
+
+     <?php } ?>
 
 
 </body>

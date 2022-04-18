@@ -119,17 +119,19 @@ if(isset($_REQUEST["post"])){
     $subject = $_REQUEST["subject"];
     $description =$_REQUEST["description"];
     $tag = $_REQUEST["tag"];
+    $username = $_SESSION['username'];
 
-    $sql = "INSERT INTO blog(subject, description, tag) VALUES ('$subject', '$description', '$tag')";
+    $sql = "INSERT INTO blog(subject, description, username) VALUES ('$subject', '$description', '$username')";
     mysqli_query($db, $sql);
-
+    $sql = "INSERT INTO tags('tag') VALUES ('$tag')";
+    mysqli_query($db, $sql);
     header("Location: index.php?info=added");
     exit();
 }
 //Get blog data based on id
-if(isset($_REQUEST['id'])){
-    $id = $_REQUEST['id'];
-    $sql = "SELECT * FROM blog WHERE id = $id";
+if(isset($_REQUEST['blogid'])){
+    $blogid = $_REQUEST['blogid'];
+    $sql = "SELECT * FROM blog WHERE blogid = $blogid";
     $query = mysqli_query($db, $sql);
 }
 
@@ -154,3 +156,34 @@ if(isset($_REQUEST['update'])){
     header("Location: index.php");
     exit();
 }
+//Comment
+if(isset($_REQUEST["comment"])){
+
+    $comment = $_REQUEST["comment"];
+    $rating =  $_REQUEST["sentiment"];
+    $username = $_SESSION['username'];
+    $blogid = $_SESSION['blogid'];
+
+    if($rating == 'positive'){
+      $sentiment = 1;
+      }
+    else{
+      $sentiment = 0;
+    }
+
+    $sql = "INSERT INTO comment(comment, sentiment, blogid, username) VALUES ('$comment', $sentiment, '$blogid', '$username')";
+    mysqli_query($db, $sql);
+
+    header("Location: index.php");
+    exit();
+  }
+
+  if(isset($_REQUEST['blogid'])){
+    $blogid = $_REQUEST['blogid'];
+    $_SESSION['blogid'] = $blogid;
+
+    $sql = "SELECT * FROM blog WHERE blogid = $blogid";
+    $sql1 = "SELECT * FROM comment WHERE blogid = $blogid";
+    $query = mysqli_query($db, $sql);
+    $query1 = mysqli_query($db, $sql1);
+  }
