@@ -108,15 +108,19 @@ if(isset($_POST['login_user'])){
 //Create A Blog
 $subject = mysqli_real_escape_string($db, $_POST['subject'] ?? "");
 $description = mysqli_real_escape_string($db, $_POST['description'] ?? "");
+$tag = mysqli_real_escape_string($db, $_POST['tag'] ?? "");
 
+//show all tuple data from database into welcome page
 $sql = "SELECT * FROM blog";
 $query = mysqli_query($db, $sql);
 
+//create blog
 if(isset($_REQUEST["post"])){
     $subject = $_REQUEST["subject"];
     $description =$_REQUEST["description"];
+    $tag = $_REQUEST['tag'];
 
-    $sql = "INSERT INTO blog(subject, description) VALUES ('$subject', '$description')";
+    $sql = "INSERT INTO blog(subject, description, tag) VALUES ('$subject', '$description', '$tag)";
     mysqli_query($db, $sql);
 
     header("Location: index.php?info=added");
