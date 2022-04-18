@@ -38,7 +38,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog','1'),('105','Nice to meet you all','I hope we can all get along','1'),('123','Boring','Not much to do on this blog','2'),('127','Having a great time','Posting on this blog is fun','3'),('130','Leaving this blog','Im leaving for another blog','1');
+INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay','1'),('112','Pleasure to be here','I hope to talk to everyone soon','1'),('113','Not Good','I dont like this blog','2'),('114','Rice Cakes','I like rice cakes','3'),('115','This sucks','Not using this blog anymore','1');
 
 CREATE TABLE `comment` (
   `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -52,7 +52,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('101','Welcome to the blog','101','1'),('105','I hope we can all get along','101','2'),('123','Not much to do on this blog','101','3'),('127','Posting on this blog is fun','101' ,'3'),('130','Im leaving for another blog','101','1');
+INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','101','1'),('105','I hope we can all get along','101','2'),('123','Not much to do on this blog','101','3'),('127','Posting on this blog is fun','101' ,'3'),('130','Im leave with you','101','1');
 
 
 --
@@ -67,4 +67,4 @@ CREATE TABLE `tag` (
 --
 -- Dumping data for table `tag`
 --
-INSERT INTO `tag` VALUES ('14365','NewBlog'),('15347','Friendly'),('19368','Bored'),('22591','Fun, GreatTime'),('25946','Leavinglol');
+INSERT INTO `tag` VALUES ('155','NewHere'),('156','WantToMeetPpl'),('157','Yawn'),('158','Excited, RiceCakes'),('159','BuhBye');
