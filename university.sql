@@ -29,6 +29,7 @@ CREATE TABLE `blog` (
   `subject` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `description` LONGTEXT COLLATE utf8mb4_general_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blog_date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `username` (`username`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL
@@ -36,7 +37,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog','comp440'),('105','Nice to meet you all','I hope we can all get along','comp440'),('123','Boring','Not much to do on this blog','comp440'),('127','Having a great time','Posting on this blog is fun','comp440'),('130','Leaving this blog','Im leaving for another blog','comp440');
+INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog','comp440', '2022-04-18 12:16:54'),('105','Nice to meet you all','I hope we can all get along','comp440', '2022-04-18 12:16:54'),('123','Boring','Not much to do on this blog','comp440', '2022-04-18 12:16:54'),('127','Having a great time','Posting on this blog is fun','comp440', '2022-04-18 12:16:54'),('130','Leaving this blog','Im leaving for another blog','comp440', '2022-04-18 12:16:54');
 
 --
 -- Table structure for table `comment`
@@ -45,11 +46,12 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comment` MEDIUMTEXT COLLATE utf8mb4_general_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `comment_date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `username` (`username`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL
 );
-INSERT INTO `comment` VALUES ('101','Welcome to the blog','comp440'),('105','I hope we can all get along','comp442'),('123','Not much to do on this blog','comp441'),('127','Posting on this blog is fun','comp443'),('130','Im leaving for another blog','comp440');
+INSERT INTO `comment` VALUES ('101','Welcome to the blog','comp440', '2022-04-18 12:16:54'),('105','I hope we can all get along','comp442', '2022-04-18 12:16:54'),('123','Not much to do on this blog','comp441', '2022-04-18 12:16:54'),('127','Posting on this blog is fun','comp443', '2022-04-18 12:16:54'),('130','Im leaving for another blog','comp440', '2022-04-18 12:16:54');
 
 
 --
