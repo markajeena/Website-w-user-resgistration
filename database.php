@@ -8,7 +8,7 @@ $login_user=true;
 $subject="";
 $description="";
 //connect_db
-$db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+$db = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
 
 //Registration
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
@@ -108,7 +108,7 @@ if(isset($_POST['login_user'])){
 //Create A Blog
 $subject = mysqli_real_escape_string($db, $_POST['subject'] ?? "");
 $description = mysqli_real_escape_string($db, $_POST['description'] ?? "");
-$tag = mysqli_real_escape_string($db, $_POST['tag'] ?? "");
+$tag = mysqli_real_escape_string($db, $_POST["tagging"] ?? "");
 
 //show all tuple data from database into welcome page
 $sql = "SELECT * FROM blog";
@@ -118,9 +118,9 @@ $query = mysqli_query($db, $sql);
 if(isset($_REQUEST["post"])){
     $subject = $_REQUEST["subject"];
     $description =$_REQUEST["description"];
-    $tag = $_REQUEST['tag'];
+    $tag = $_REQUEST["tagging"];
 
-    $sql = "INSERT INTO blog(subject, description, tag) VALUES ('$subject', '$description', '$tag)";
+    $sql = "INSERT INTO blog(subject, description, tagging) VALUES ('$subject', '$description', '$tag)";
     mysqli_query($db, $sql);
 
     header("Location: index.php?info=added");

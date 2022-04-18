@@ -38,7 +38,7 @@
         <?php } ?>    
 
         <a href="index.php" class="button">Go Home</a>
-        <p><?php echo $q['tag'];?></p>
+        <p><?php echo $q['tagging'];?></p>
         <div>
         <textarea name="comment" class="comment" placeholder="Enter Comment..."></textarea></div>
 
