@@ -3,6 +3,7 @@
 session_start();
 
 //initialization
+$userid = "";
 $username = "";
 $firstname = "";
 $lastname = "";
@@ -10,7 +11,7 @@ $email = "";
 
 $errors = array();
 
-$db = mysqli_connect('localhost', 'root','','user_registration') or die("Connection Failed");
+$db = mysqli_connect('localhost:3307', 'root','','phase1') or die("Connection Failed");
 
 if(!isset($_POST['login'])){
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
@@ -80,3 +81,55 @@ if (isset($_POST['login'])) {
   }
 
 }
+
+  $sql = "SELECT * FROM blog";
+  $query = mysqli_query($db, $sql);
+
+
+  if(isset($_REQUEST["new_post"])){
+    $subject = $_REQUEST["subject"];
+    $description = $_REQUEST["description"];
+    $tag = $_REQUEST["new_post"];
+    $username = $_SESSION['username'];
+
+    $sql = "INSERT INTO blog(subject, description, user_id) VALUES ('$subject', '$description', (SELECT userid FROM user WHERE username = '$username'))";
+    mysqli_query($db, $sql);
+
+    $blogid = $_SESSION['blogid'];
+    $sql1 = "INSERT INTO tag(tag, blog_id) VALUES ('$tag', '$blogid')";
+    mysqli_query($db, $sql1);
+
+  header("Location: index.php");
+    exit();
+  }
+
+  if(isset($_REQUEST["comment"])){
+
+    $comment = $_REQUEST["comment"];
+    $rating =  $_REQUEST["sentiment"];
+    $username = $_SESSION['username'];
+    $blogid = $_SESSION['blogid'];
+
+    if($rating == 'positive'){
+      $sentiment = 1;
+      }
+    else{
+      $sentiment = 0;
+    }
+
+    $sql = "INSERT INTO comment(comment, sentiment, blog_id, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
+    mysqli_query($db, $sql);
+
+    header("Location: index.php");
+    exit();
+  }
+
+  if(isset($_REQUEST['blogid'])){
+    $blogid = $_REQUEST['blogid'];
+    $_SESSION['blogid'] = $blogid;
+
+    $sql = "SELECT * FROM blog WHERE blogid = $blogid";
+    $sql1 = "SELECT * FROM comment WHERE blog_id = $blogid";
+    $query = mysqli_query($db, $sql);
+    $query1 = mysqli_query($db, $sql1);
+  }
