@@ -21,7 +21,7 @@
                 <div><input id="input" name="subject" type="text" placeholder="Subject" class="form"></div>
                 <div><textarea id="text" name="description" placeholder="add description..." class="form"></textarea></div>
                 <lable>Add Tags</label>
-                <textarea id="input" type="type" name="tagging" placeholder="Add Tags(Seperate by Comma)..." style="width 100%;"></textarea>
+                <textarea id="input" type="type" name="tag" placeholder="Add Tags(Seperate by Comma)..." style="width 100%;"></textarea>
                 <div><button id="button" name="post"class="button">Add Blog</button></div>
 
             </form>
