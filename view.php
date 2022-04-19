@@ -61,7 +61,7 @@
             }
      button{
             position:relative;
-            left:46%;
+            left:48%;
             margin:auto;
             margin-bottom: 1%;
             text-align:center;
