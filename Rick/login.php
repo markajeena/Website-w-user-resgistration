@@ -2,15 +2,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css" />
     <title>Login</title>
   </head>
   <body>
     <style>
         body { background-color: rgba(0, 128, 0, 0.3) }
       </style>
-    <div class="container">
-
-        <div class="header">
+    <div class="login-page">
+      <div class="form">
+        <div class="login-header">
 
           <h2>Login</h2>
 
@@ -43,7 +44,7 @@
 <input type='submit' value='Initialize Database'name='Database_Initialization'>
 </form>
     </div>
-
+</div>
   </body>
 </html>>
 <?php    
