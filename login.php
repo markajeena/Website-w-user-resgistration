@@ -37,6 +37,7 @@ if(count($errors)>2)
     <style>
         button{
             position:relative;
+            border: solid;    
             border-color: #5CDEFF;
             border-radius: 10px;
             transition: .4s ease-in;
@@ -65,6 +66,7 @@ if(count($errors)>2)
 <input id="btn "class="btn" type='submit' value='Initialize Database'name='Database_Initialization'>
 <style>
         .btn{
+            border: solid;    
             border-color: #5CDEFF;
             border-radius: 10px;
             position:relative;

@@ -37,6 +37,7 @@
             select{margin-bottom: 30px; float: left}
             form{text-align: center;}
             textarea{margin: 10px 0 10px 0; width:100%; height:200px}
+            a{text-decoration: none;}
             button{
             margin-bottom:1%;
             position: relative;

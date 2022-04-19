@@ -28,6 +28,9 @@
             </form>
         </div>
         <style>
+            a{
+                text-decoration:none;
+            }
             input{
                 margin-bottom: 10px;
             }

@@ -52,10 +52,14 @@
    <div><button><a href="comment.php?blogid=<?php echo $q['blogid']?>">Add a Comment</a></button>
       </div>
         <style>
+            a{
+                text-decoration:none;
+            }
      button{
             text-align:center;
             margin:auto;
             position:relative;
+            border: solid;    
             border-color: #5CDEFF;
             border-radius: 10px;
             transition: .4s ease-in;
