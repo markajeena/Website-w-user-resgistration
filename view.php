@@ -19,7 +19,7 @@
         <?php foreach($query as $q){?>
             <div>
                 <h1><?php echo $q['subject'];?></h1>
-                <div><button class="button" name="delete">Delete</button></div>
+                <!--<div><button class="button" name="delete">Delete</button></div>-->
 
                 <style>
                 h1{text-align: center;}
@@ -32,32 +32,39 @@
                 </div>
 
             </div>
-            <p><?php echo $q['description'];?></p>
+            <div><p><?php echo $q['description'];?></p></div>
             <style>
-                p{text-align: center;}
+                p{
+                    line-height: 2;
+                    text-align: center;
+                    padding-left: 500px;
+                    padding-right: 500px}
             </style>
         <?php } ?>
         
       <?php foreach ($query1 as $q) {?>
-
-        <p> Comment: <?php echo $q['comment']; ?></p>
+        <label>Comments:</label>
+        <p><?php echo $q['comment']; ?></p>
 
         <?php } ?>
+        <div><button class="button"><a href="comment.php?blogid=<?php echo $q['blogid']?>">Add a Comment</a></button></div>
 
 
-        <button class="button"><a href="index.php" class="button">Go Home</a></button>
+        <div><button class="button"><a href="index.php" class="button">Go Home</a></button></div>
     
    </div>
 
-   <div><button><a href="comment.php?blogid=<?php echo $q['blogid']?>">Add a Comment</a></button>
-      </div>
         <style>
             a{
                 text-decoration:none;
+                color:black;
             }
      button{
-            text-align:center;
+            position:relative;
+            left:46%;
             margin:auto;
+            margin-bottom: 1%;
+            text-align:center;
             position:relative;
             border: solid;    
             border-color: #5CDEFF;
@@ -65,7 +72,7 @@
             transition: .4s ease-in;
             z-index: 1;
             font-size: 16px;
-            background-color: white;
+            background-color: transparent;
             color: black;
         }
         button::before,
@@ -77,6 +84,11 @@
         .button:hover {
             background: #5CDEFF;
             box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
+        }
+        label{
+            margin:auto;
+            margin-left:49%;
+            text-align:center;
         }
         </style>
 </body>
