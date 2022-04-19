@@ -134,49 +134,40 @@ if(isset($_REQUEST['blogid'])){
     $sql = "SELECT * FROM blog WHERE blogid = $blogid";
     $query = mysqli_query($db, $sql);
 }
+//limit a user to 3 comments per day
+// global $datelimit;
+// $limit = 3;
+// $commentCount = $datelimit->get_var($datelimit->prepare("
+//     SELECT count(*)
+//     FROM comment
+//     WHERE username = '%s'
+//     AND commentDate => DATE_SUB(NOW(), INTERVAL 1 DAY);",username->user) );
+//    if($commentCount < $limit){
+        //comment
+        if(isset($_REQUEST["comment"])){
 
-//Delete Blog
-// if(isset($_REQUEST['delete'])){
-//     $id = $_REQUEST['id'];
-//     $sql = "DELETE FROM blog WHERE blogid = $blogid";
-//     mysqli_query($db, $sql);
-//     header("Location: index.php");
-//     exit();
-// }
-
-//Update Blog
-// if(isset($_REQUEST['update'])){
-//     $id = $_REQUEST['id'];
-//     $subject = $_REQUEST['subject'];
-//     $description = $_REQUEST['description'];
-
-//     $sql = "UPDATE blog SET subject = '$subject', description = '$description' WHERE id = $id";
-//     mysqli_query($db, $sql);
-
-//     header("Location: index.php");
-//     exit();
-// }
-//Comment
-if(isset($_REQUEST["comment"])){
-
-    $comment = $_REQUEST["comment"];
-    $rating =  $_REQUEST["sentiment"];
-    $username = $_SESSION['username'];
-    $blogid = $_SESSION['blogid'];
-
-    if($rating == 'positive'){
-      $sentiment = 1;
-      }
-    else{
-      $sentiment = 0;
-    }
-
-    $sql = "INSERT INTO comment(comment, sentiment, blogid, username) VALUES ('$comment', $sentiment, '$blogid', '$username')";
-    mysqli_query($db, $sql);
-
-    header("Location: index.php");
-    exit();
-  }
+            $comment = $_REQUEST["comment"];
+            $rating =  $_REQUEST["sentiment"];
+            $username = $_SESSION['username'];
+            $blogid = $_SESSION['blogid'];
+        
+            if($rating == 'positive'){
+              $sentiment = 1;
+              }
+            else{
+              $sentiment = 0;
+            }
+        
+            $sql = "INSERT INTO comment(comment, sentiment, blogid, username) VALUES ('$comment', $sentiment, '$blogid', '$username')";
+            mysqli_query($db, $sql);
+        
+            header("Location: index.php");
+            exit();
+          }
+          else{
+              echo 'exceeded comment limit per day';
+          }
+//    }
 
   if(isset($_REQUEST['blogid'])){
     $blogid = $_REQUEST['blogid'];
