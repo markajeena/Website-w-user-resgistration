@@ -19,7 +19,7 @@ CREATE TABLE `user`(
 --
 -- Dumping data for table `user`
 --
-INSERT INTO `user` VALUES ('comp440','pass1234', 'Mark', 'Ajina', 'markajina@sexyman.org'),('comp441','pass1234', 'Ricardo', 'Carrillo', 'bearbear@copcop.com'),('comp442','pass1234','Jesus', 'Garcia', 'Iran@ofideas.com'),('comp443','pass1234', 'Erick', 'Anderson', 'Admiral@aol.com'),('comp444','pass1234','Joe','Bunni','Jojo@Bizzare.com');
+INSERT INTO `user` VALUES ('comp440','pass1234', 'Mark', 'Ajina', 'markajina@sexyman.org'),('comp441','pass1234', 'Ricardo', 'Carrillo', 'bearbear@copcop.com'),('comp442','pass1234','John', 'Doe', 'Iran@ofideas.com'),('comp443','pass1234', 'Erick', 'Anderson', 'Admiral@aol.com'),('comp444','pass1234','Joe','Bunni','Jojo@Bizzare.com');
 
 --
 -- Table structure for table `blog`

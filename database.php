@@ -136,13 +136,13 @@ if(isset($_REQUEST['blogid'])){
 }
 
 //Delete Blog
-if(isset($_REQUEST['delete'])){
-    $id = $_REQUEST['id'];
-    $sql = "DELETE FROM blog WHERE blogid = $blogid";
-    mysqli_query($db, $sql);
-    header("Location: index.php");
-    exit();
-}
+// if(isset($_REQUEST['delete'])){
+//     $id = $_REQUEST['id'];
+//     $sql = "DELETE FROM blog WHERE blogid = $blogid";
+//     mysqli_query($db, $sql);
+//     header("Location: index.php");
+//     exit();
+// }
 
 //Update Blog
 // if(isset($_REQUEST['update'])){
