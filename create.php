@@ -23,6 +23,7 @@
                 <lable>Add Tags</label>
                 <textarea id="input" type="type" name="tag" placeholder="Add Tags(Seperate by Comma)..." style="width 100%;"></textarea>
                 <div><button id="button" name="post"class="button">Add Blog</button></div>
+                <div><button class="button"><a href="index.php"> Go Home </a></button></div>
 
             </form>
         </div>

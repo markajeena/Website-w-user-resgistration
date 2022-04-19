@@ -37,7 +37,8 @@ if(count($errors)>2)
     <style>
         button{
             position:relative;
-            border: none;
+            border-color: #5CDEFF;
+            border-radius: 10px;
             transition: .4s ease-in;
             z-index: 1;
             font-size: 16px;
@@ -61,7 +62,33 @@ if(count($errors)>2)
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
 <form action='' method='POST'>
-<input type='submit' value='Initialize Database'name='Database_Initialization'>
+<input id="btn "class="btn" type='submit' value='Initialize Database'name='Database_Initialization'>
+<style>
+        .btn{
+            border-color: #5CDEFF;
+            border-radius: 10px;
+            position:relative;
+            border-color: #5CDEFF;
+            border-radius: 10px;
+            transition: .4s ease-in;
+            z-index: 1;
+            font-size: 16px;
+            background-color: white;
+            color: black;
+        }
+        .btn::before,
+        .btn::after{
+            position: absolute;
+            content: "";
+            z-index: -1;
+        }
+        .btn:hover {
+            background: #5CDEFF;
+            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
+        }
+
+    </style>
+
 </form>
 </div>
 </body>

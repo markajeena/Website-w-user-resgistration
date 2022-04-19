@@ -29,7 +29,7 @@
               </div>
 
                 <button class="button">Add Comment</button>
-        
+                <div><button class="button"><a href="index.php"> Go Home </a></button></div>
             </form>
 
             <style>
