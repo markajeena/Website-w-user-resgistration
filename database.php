@@ -138,24 +138,24 @@ if(isset($_REQUEST['blogid'])){
 //Delete Blog
 if(isset($_REQUEST['delete'])){
     $id = $_REQUEST['id'];
-    $sql = "DELETE FROM blog WHERE id = $id";
+    $sql = "DELETE FROM blog WHERE blogid = $blogid";
     mysqli_query($db, $sql);
     header("Location: index.php");
     exit();
 }
 
 //Update Blog
-if(isset($_REQUEST['update'])){
-    $id = $_REQUEST['id'];
-    $subject = $_REQUEST['subject'];
-    $description = $_REQUEST['description'];
+// if(isset($_REQUEST['update'])){
+//     $id = $_REQUEST['id'];
+//     $subject = $_REQUEST['subject'];
+//     $description = $_REQUEST['description'];
 
-    $sql = "UPDATE blog SET subject = '$subject', description = '$description' WHERE id = $id";
-    mysqli_query($db, $sql);
+//     $sql = "UPDATE blog SET subject = '$subject', description = '$description' WHERE id = $id";
+//     mysqli_query($db, $sql);
 
-    header("Location: index.php");
-    exit();
-}
+//     header("Location: index.php");
+//     exit();
+// }
 //Comment
 if(isset($_REQUEST["comment"])){
 
