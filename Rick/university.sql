@@ -52,7 +52,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','101','1'),('105','I hope we can all get along','101','2'),('123','Not much to do on this blog','101','3'),('127','Posting on this blog is fun','101' ,'3'),('130','Im leave with you','101','1');
+INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','111','1'),('105','Lets be Friends!','111','2'),('123','Hiiiiiiiiiiii','112','3'),('127','I love waffles','113' ,'3'),('130','I dont lose','114','1');
 
 
 --
@@ -62,9 +62,12 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `tagid` bigint(20) NOT NULL AUTO_INCREMENT,
   `tag` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`tagid`)
+  `blog_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`tagid`),
+  KEY `blog_id` (`blog_id`),
+  CONSTRAINT `tag_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blogid`) ON DELETE SET NULL
 );
 --
 -- Dumping data for table `tag`
 --
-INSERT INTO `tag` VALUES ('155','NewHere'),('156','WantToMeetPpl'),('157','Yawn'),('158','Excited, RiceCakes'),('159','BuhBye');
+INSERT INTO `tag` VALUES ('155','NewHere', '111'),('156','WantToMeetPpl', '112'),('157','Yawn', '113'),('158','Excited, RiceCakes', '114'),('159','BuhBye', '115');
