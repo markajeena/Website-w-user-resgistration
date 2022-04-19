@@ -59,7 +59,8 @@ if(count($errors)>=6)
     <style>
         button{
             margin-left: 5%;
-            border: none;
+            border-color: #5CDEFF;
+            border-radius: 10px;
             transition: .4s ease-in;
             z-index: 1;
             font-size: 16px;
