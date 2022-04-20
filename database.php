@@ -147,14 +147,11 @@ if(isset($_REQUEST["post"])){
 }
 
 //limit a user to 3 comments per day
-// global $datelimit;
-// $limit = 3;
-// $commentCount = $datelimit->get_var($datelimit->prepare("
-//     SELECT count(*)
-//     FROM comment
-//     WHERE username = '%s'
-//     AND commentDate => DATE_SUB(NOW(), INTERVAL 1 DAY);",username->user) );
-//    if($commentCount < $limit){
+
+$limit = 3;
+
+
+
         //comment
         if(isset($_REQUEST["comment"])){
 
@@ -162,14 +159,14 @@ if(isset($_REQUEST["post"])){
             $rating =  $_REQUEST["sentiment"];
             $username = $_SESSION['username'];
             $blogid = $_SESSION['blogid'];
-        
+            //$date = $_REQUEST['commentDate'];
             if($rating == 'positive'){
-              $sentiment = 1;
+            $sentiment = 1;
               }
             else{
-              $sentiment = 0;
+            $sentiment = 0;
             }
-            $sql = "SELECT COUNT(*) FROM comment WHERE username = (SELECT username FROM user WHERE username = '$username')";
+            $sql = "SELECT COUNT(*) FROM comment WHERE (username = (SELECT username FROM user WHERE username = '$username')) AND commentDate >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
             $count = mysqli_query($db, $sql);
 
             $result = $count->fetch_array();
@@ -195,7 +192,7 @@ if(isset($_REQUEST["post"])){
             header("Location: index.php");
             exit();
           }
-//    }
+    
 
   if(isset($_REQUEST['blogid'])){
     $blogid = $_REQUEST['blogid'];
