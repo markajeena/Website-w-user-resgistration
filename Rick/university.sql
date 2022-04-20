@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `tag`;
 DROP TABLE IF EXISTS `blog`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
-  `userid` bigint(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `userid` bigint(20) COLLATE utf8mb4_general_ci NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `firstname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
