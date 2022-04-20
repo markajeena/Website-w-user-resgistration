@@ -26,7 +26,7 @@
               Initialize Database
             </button>
             <p>
-              Not A User? <a href="registration.php"><b>Register Here</b></a>
+              Not A User? <a href="registration.html"><b>Register Here</b></a>
             </p>
           </form>
         </div>
@@ -34,3 +34,19 @@
     </body>
   </body>
 </html>
+<?php    
+    if(isset($_POST['Database_Initialization'])){
+      $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+      // Load and explode the sql file
+      $f = fopen('university.sql',"r+");
+      $sqlFile = fread($f,filesize('university.sql'));
+      $sqlArray = explode(';',$sqlFile);
+           
+      //Process the sql file by statements
+      foreach ($sqlArray as $stmt) {
+        if (strlen($stmt)>3){
+             $result = mysqli_query($con, $stmt);
+            }
+       }
+     }
+?>
