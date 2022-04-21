@@ -92,6 +92,8 @@ if(isset($_GET['logout'])){
                        }
                     </style>
             <?php } ?>
+            <div><button><a href="check.php" class="button">Check all information<span class="danger">&rarr;</span></a></button></div>
+    
         </div>
 
 </body>
