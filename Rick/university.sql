@@ -8,6 +8,7 @@ use `phase1`;
 DROP TABLE IF EXISTS `comment`;
 DROP TABLE IF EXISTS `tag`;
 DROP TABLE IF EXISTS `blog`;
+DROP TABLE IF EXISTS `hobbies`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
   `userid` bigint(20) COLLATE utf8mb4_general_ci NOT NULL AUTO_INCREMENT,
@@ -72,3 +73,20 @@ CREATE TABLE `tag` (
 -- Dumping data for table `tag`
 --
 INSERT INTO `tag` VALUES ('155','NewHere', '111'),('156','WantToMeetPpl', '112'),('157','Yawn', '113'),('158','Excited, RiceCakes', '114'),('159','BuhBye', '115');
+
+--
+-- Table structure for table "hobies"
+--
+CREATE TABLE `hobbies` (
+  `hobbyid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `hobby` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`hobbyid`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `hobby_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
+);
+--
+-- Dumping data for table `hobbies`
+--
+
+INSERT INTO `hobbies` VALUES ('50','running','1'),('51','fishing','2'),('53','walking','3'),('55','hiking','4'),('56','Yugioh','4');
