@@ -44,6 +44,7 @@ CREATE TABLE `comment` (
  `sentiment` BOOLEAN COLLATE utf8mb4_general_ci NOT NULL,
  `blogid` int(11) DEFAULT NULL,
  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ `commentDate` DATE DEFAULT NULL,
  PRIMARY KEY (`comment`),
  KEY `blogid` (`blogid`),
  KEY `username` (`username`),
@@ -51,7 +52,7 @@ CREATE TABLE `comment` (
  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'101','comp440'),('I hope we can all get along', 1 ,'101','comp442'),('Not much to do on this blog', 0, '101','comp441'),('Posting on this blog is fun',1,'101' ,'comp443'),('Im leaving for another blog',0,'101','comp440');
+INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'101','comp440', '2022-04-20'),('I hope we can all get along', 1 ,'101','comp442', '2022-04-20'),('Not much to do on this blog', 0, '101','comp441', '2022-04-19'),('Posting on this blog is fun',1,'101' ,'comp443', '2022-04-19'),('Im leaving for another blog',0,'101','comp440', '2022-04-18');
 
 
 --

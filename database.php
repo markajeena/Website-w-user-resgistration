@@ -166,7 +166,7 @@ $limit = 3;
             else{
             $sentiment = 0;
             }
-            $sql = "SELECT COUNT(*) FROM comment WHERE (username = (SELECT username FROM user WHERE username = '$username')) AND commentDate >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
+            $sql = "SELECT COUNT(*) FROM comment WHERE (username = (SELECT username FROM user WHERE username = '$username'))";
             $count = mysqli_query($db, $sql);
 
             $result = $count->fetch_array();
