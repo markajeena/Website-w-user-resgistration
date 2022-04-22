@@ -22,10 +22,22 @@
                    <?php } ?>
                 <a></a>
             <p>List all the blogs of user X, such that all the comments are positive for these blogs:</p><br>
-            <a> test</a>
+            <?php 
+            $sql = "SELECT * FROM blog WHERE blogid IS IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
+            $query = mysqli_query($db,$sql);
+            ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['blogid']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>List the users who posted the most number of blogs on 5/1/2022; if there is a tie, list all the users who have a tie:</p><br>
-            <a> test </a>
+            <?php $sql = "SELECT username, blogDate, COUNT(username) FROM(SELECT * FROM blog WHERE blogDate = '2022-05-01') GROUP BY username";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>List the users who are followed by both X and Y. Usernames X and Y are inputs from the user:</p><br>
             <a> test </a>

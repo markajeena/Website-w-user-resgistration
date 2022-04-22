@@ -31,6 +31,7 @@ CREATE TABLE `blog` (
   `blogid` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `description` LONGTEXT COLLATE utf8mb4_general_ci NOT NULL,
+  `blogDate` DATE DEFAULT NULL,
   `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`blogid`),
   KEY `username` (`username`),
@@ -39,7 +40,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog','comp440'),('105','Nice to meet you all','I hope we can all get along','comp441'),('123','Boring','Not much to do on this blog','comp441'),('127','Having a great time','Posting on this blog is fun','comp442'),('130','Leaving this blog','Im leaving for another blog','comp442');
+INSERT INTO `blog` VALUES ('101','Welcome','Welcome to the blog',  '2022-05-01', 'comp440'),('105','Nice to meet you all','I hope we can all get along',  '2022-04-20','comp441'),('123','Boring','Not much to do on this blog',  '2022-04-20','comp441'),('127','Having a great time','Posting on this blog is fun', '2022-05-01','comp442'),('130','Leaving this blog','Im leaving for another blog', '2022-05-01','comp442');
 
 CREATE TABLE `comment` (
  `comment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -54,7 +55,7 @@ CREATE TABLE `comment` (
  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'101','comp440', '2022-04-20'),('I hope we can all get along', 1 ,'101','comp442', '2022-04-20'),('Not much to do on this blog', 0, '101','comp441', '2022-04-19'),('Posting on this blog is fun',1,'101' ,'comp443', '2022-04-19'),('Im leaving for another blog',0,'101','comp440', '2022-04-18');
+INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'105','comp440', '2022-04-20'),('I hope we can all get along', 1 ,'105','comp442', '2022-04-20'),('Not much to do on this blog', 0, '101','comp441', '2022-04-19'),('Posting on this blog is fun',1,'101' ,'comp443', '2022-04-19'),('Im leaving for another blog',0,'101','comp440', '2022-04-18');
 
 
 --
