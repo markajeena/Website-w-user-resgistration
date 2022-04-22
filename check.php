@@ -10,13 +10,17 @@
 
         <body>
 
-            <style>body{background-image:url('pexels-photo.jpg');} h1{text-align: center;} p{line-height:2; font-weight: bold}</style>
+            <style>body{background-image:url('pexels-photo.jpg');} h1{text-align: center;} p{line-height:2; font-weight: bold} a{line-height:2;}</style>
 
             <h1>Database Information</h1>
 
             <p>List All Users who have at least two blogs, Where one has Tag 'x' and One has Tag 'y':</p><br>
-            <a> test </a>
-
+            <?php $sql = "SELECT username FROM blog GROUP BY username HAVING COUNT(username) >= 2";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
             <p>List all the blogs of user X, such that all the comments are positive for these blogs:</p><br>
             <a> test</a>
 
