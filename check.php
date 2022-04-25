@@ -23,7 +23,7 @@
                 <a></a>
             <p>List all the blogs of user X, such that all the comments are positive for these blogs:</p><br>
             <?php 
-            $sql = "SELECT * FROM blog WHERE blogid IS IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
+            $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
             $query = mysqli_query($db,$sql);
             ?>
                    <?php foreach($query as $q){ ?>
@@ -32,10 +32,11 @@
                 <a></a>
 
             <p>List the users who posted the most number of blogs on 5/1/2022; if there is a tie, list all the users who have a tie:</p><br>
-            <?php $sql = "SELECT username, blogDate, COUNT(username) FROM(SELECT * FROM blog WHERE blogDate = '2022-05-01') GROUP BY username";
+            <?php $sql = "SELECT username, COUNT(username) FROM blog WHERE blogid IN( SELECT blogid FROM blog WHERE blogDate = '2022-05-01' ) GROUP BY username HAVING COUNT(username) =( SELECT MAX(mycount) FROM ( SELECT username, COUNT(username) mycount FROM blog WHERE blogid IN( SELECT blogid FROM blog WHERE blogDate = '2022-05-01' ) GROUP BY username ) AS maxcount )";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
                       <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['COUNT(username)']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
@@ -43,19 +44,48 @@
             <a> test </a>
 
             <p>List a user pair (A, B) such that they have at least one common hobby:</p><br>
-            <a> test </a>
+            <?php $sql = "SELECT h1.username FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>Display all the users who never posted a blog:</p><br>
-            <a> test </a>
+            <?php $sql = "SELECT username FROM user WHERE username NOT IN (SELECT username FROM blog)";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>Display all the users who never posted a comment:</p><br>
-            <a> test </a>
+            <?php $sql = "SELECT username FROM user WHERE username NOT IN (SELECT username FROM comment)";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>Display all the users who posted some comments, but each of them is negative:</p><br>
-            <a> test </a>
+            <?php 
+            $sql = "SELECT username FROM user WHERE username IN (SELECT username FROM comment GROUP BY username HAVING 0=SUM(sentiment))"; 
+            $query = mysqli_query($db,$sql);
+            ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
-            <a> test </a>
+            <?php 
+            $sql = "SELECT username FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
+            $query = mysqli_query($db,$sql);
+            ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['username']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <button><a href="index.php"> Go Home</a></button>
         </body>

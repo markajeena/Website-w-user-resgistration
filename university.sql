@@ -55,7 +55,7 @@ CREATE TABLE `comment` (
  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'105','comp440', '2022-04-20'),('I hope we can all get along', 1 ,'105','comp442', '2022-04-20'),('Not much to do on this blog', 0, '101','comp441', '2022-04-19'),('Posting on this blog is fun',1,'101' ,'comp443', '2022-04-19'),('Im leaving for another blog',0,'101','comp440', '2022-04-18');
+INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'105','comp440', '2022-04-20'),('I hope we can all get along', 1 ,'105','comp442', '2022-04-20'),('Not much to do on this blog', 1, '101','comp441', '2022-04-19'),('Posting on this blog is fun',0,'101' ,'comp443', '2022-04-19'),('Im leaving for another blog',0,'101','comp440', '2022-04-18');
 
 
 --
@@ -86,4 +86,4 @@ CREATE TABLE `hobby` (
 --
 -- Dumping data for table `hobby`
 --
-INSERT INTO `hobby` VALUES ('1','Soccer','comp440'),('2','Video Games', 'comp441'),('3','Streaming','comp442'),('4','Casting','comp443'),('5','Basketball','comp444');
+INSERT INTO `hobby` VALUES ('1','Soccer','comp440'),('2','Video Games', 'comp441'),('3','Streaming','comp442'),('4','Soccer','comp443'),('5','Basketball','comp444');
