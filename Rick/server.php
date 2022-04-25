@@ -11,7 +11,7 @@ $email = "";
 
 $errors = array();
 
-$db = mysqli_connect('localhost:3307', 'root','','phase1') or die("Connection Failed");
+$db = mysqli_connect('localhost', 'root','','phase1') or die("Connection Failed");
 
 if(!isset($_POST['login'])){
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");

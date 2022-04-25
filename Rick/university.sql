@@ -32,6 +32,7 @@ CREATE TABLE `blog` (
   `subject` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blog_date` DATE COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`blogid`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
@@ -39,7 +40,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay','1'),('112','Pleasure to be here','I hope to talk to everyone soon','1'),('113','Not Good','I dont like this blog','2'),('114','Rice Cakes','I like rice cakes','3'),('115','This sucks','Not using this blog anymore','1');
+INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay','1', '2021-05-01'),('112','Pleasure to be here','I hope to talk to everyone soon','1', '2021-05-02'),('113','Not Good','I dont like this blog','2', '2021-05-03'),('114','Rice Cakes','I like rice cakes','3', '2021-05-04'),('115','This sucks','Not using this blog anymore','1', '2021-05-05');
 
 CREATE TABLE `comment` (
   `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
