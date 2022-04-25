@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+  <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8">
     <title>Registration</title>
   </head>
@@ -9,13 +10,14 @@
   <style>
       body { background-color: rgba(0, 128, 0, 0.3) }
     </style>
-    <div class="container">
-
-        <div class="header">
+    <div class="login-page">
+    <div class="form">
+      <div class="login">
+        <div class="login-header">
 
           <h2>Register</h2>
         </div>
-
+</div>
         <form action="registration.php" method= "post">
           <?php include('errors.php') ?>
 
@@ -65,7 +67,7 @@
 
           <p> Already signed up? <a href="login.php"> <b> Login </b> </a></p>
         </form>
-
+</div>
     </div>
 
   </body>

@@ -4,6 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" />
     <title> Comments </title>
   </head>
   <body>
@@ -12,7 +13,11 @@
         body { background-color: rgba(0, 128, 0, 0.3) }
       </style>
 
-          <div class="container mt-5">
+<div class="login-page">
+ <div class="form">
+  <div class="comment-header">
+              <h3>Add a Comment!</h3>
+            </div>
 
             <form method="GET">
 
@@ -30,6 +35,7 @@
         
             </form>
           </div>
+</div>
 
 
   </body>
