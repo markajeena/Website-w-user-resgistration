@@ -16,6 +16,15 @@
             <h1>Database Information</h1>
 
             <p>List All Users who have at least two blogs, Where one has Tag 'x' and One has Tag 'y':</p><br>
+
+            <div>
+               <label>Tag 'x' :</label>
+                  <input id="in1" type="text">
+               Compared with
+               <label>Tag 'y' :</label>
+                  <input id="in2" type="text">
+            </div>
+
             <?php $sql = "SELECT username FROM blog GROUP BY username HAVING COUNT(username) >= 2";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
@@ -43,6 +52,14 @@
 
             <p>List the users who are followed by both X and Y. Usernames X and Y are inputs from the user:</p><br>
             
+            <div>
+               <label>Username 'x' :</label>
+                  <input id="in1" type="text">
+               Compared with
+               <label>Username 'y' :</label>
+                  <input id="in2" type="text">
+            </div>
+
             <?php 
             //this works for follower table just need to set up user input and replace the direct variable calls for this  *******this one********************************************************************and this one
             $sql = "SELECT DISTINCT following FROM `follower` WHERE following IN (SELECT following FROM `follower` WHERE follower='comp440') AND following IN (SELECT following FROM `follower` WHERE follower='comp442');";
