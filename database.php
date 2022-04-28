@@ -192,9 +192,12 @@ $limit = 3;
             if($quantity < 3 &&  $idfound1!= $idfound2){
             $sql = "INSERT INTO comment(comment, sentiment, blogid, username) VALUES ('$comment', $sentiment, '$blogid', '$username')";
             mysqli_query($db, $sql);
+            header("Location: index.php?c=added");
             }
-        
-            header("Location: index.php");
+            else{
+                header("Location: index.php?c=notadded");
+            }
+
             exit();
           }
     

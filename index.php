@@ -18,16 +18,26 @@ if(isset($_GET['logout'])){
 <!DOCTYPE html>
 <html>
     <body>
+        <style>h2{font-weight: bold; font-size: 35px;}</style>
+        <!-- header messages for posts -->
         <?php if(isset($_REQUEST['info'])){?>
             <?php if($_REQUEST['info'] =="added"){?>
-                <div class="alert" role="alert">
-                    Post Has Been Added
-            </div>
+                <h2>Post Has Been Added</h2>
             <?php } ?>
             <?php if($_REQUEST['info'] == "notadded"){?>
-                <div>Post was not added</div>
+                <h2>Post was not added</h2>
                 <?php }?>
         <?php } ?>
+<!-- header msgs for comments-->
+            <?php if(isset($_REQUEST['c'])){?>
+                <?php if($_REQUEST['c']=="added") {?>
+                    <h2>Comment has been added</h2>
+                    <?php } ?>
+                <?php if($_REQUEST['c'] =="notadded"){?>
+                    <h2>comment not added</h2>
+                    <?php } ?>
+            <?php } ?>
+
     <style>h1 { text-align: center; color: black} h3 {text-align: center; color: black}</style>
         <h1>Home</h1>
         <?php
