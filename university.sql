@@ -5,11 +5,11 @@ use `user_registration`;
 --
 -- Table structure for table `department`
 --
-
+DROP TABLE IF EXISTS `follower`;
 DROP TABLE IF EXISTS `hobby`;
 DROP TABLE IF EXISTS `comment`;
-DROP TABLE IF EXISTS `blog`;
 DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `blog`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
   `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -63,14 +63,15 @@ INSERT INTO `comment` VALUES ('Welcome to the blog', 1 ,'105','comp440', '2022-0
 --
 DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blogid` int(11) DEFAULT NULL,
   `tag` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  KEY `blogid` (`blogid`),
+  CONSTRAINT `tags_ibfk` FOREIGN KEY (`blogid`) REFERENCES `blog` (`blogid`) ON DELETE SET NULL
 );
 --
 -- Dumping data for table `tags`
 --
-INSERT INTO `tags` VALUES ('14365','NewBlog'),('15347','Friendly'),('19368','Bored'),('22591','Fun, GreatTime'),('25946','Leavinglol');
+INSERT INTO `tags` VALUES ('105','NewBlog'),('101','Friendly'),('123','Bored'),('127','Fun, GreatTime'),('130','Leavinglol');
 
 --
 -- Table structure for table "hobby"
@@ -87,3 +88,17 @@ CREATE TABLE `hobby` (
 -- Dumping data for table `hobby`
 --
 INSERT INTO `hobby` VALUES ('1','Soccer','comp440'),('2','Video Games', 'comp441'),('3','Streaming','comp442'),('4','Soccer','comp443'),('5','Basketball','comp444');
+
+--
+-- Table structure for table "follower"
+--
+CREATE TABLE `follower` (
+  `follower` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `following` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  KEY `following` (`following`),
+  CONSTRAINT `follower_ibfk_1` FOREIGN KEY (`following`) REFERENCES `user` (`username`) ON DELETE SET NULL
+);
+--
+-- Dumping data for table `follower`
+--
+INSERT INTO `follower` VALUES ('comp440','comp442'),('comp440', 'comp441'),('comp442','comp441'),('comp441','comp443'),('comp443','comp444');

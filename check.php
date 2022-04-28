@@ -1,5 +1,6 @@
 <?php include('database.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -41,7 +42,15 @@
                 <a></a>
 
             <p>List the users who are followed by both X and Y. Usernames X and Y are inputs from the user:</p><br>
-            <a> test </a>
+            
+            <?php 
+            //this works for follower table just need to set up user input and replace the direct variable calls for this  *******this one********************************************************************and this one
+            $sql = "SELECT DISTINCT following FROM `follower` WHERE following IN (SELECT following FROM `follower` WHERE follower='comp440') AND following IN (SELECT following FROM `follower` WHERE follower='comp442');";
+                   $query = mysqli_query($db,$sql); ?>
+                   <?php foreach($query as $q){ ?>
+                      <div><a><?php echo $q['following']; ?></a></div>
+                   <?php } ?>
+                <a></a>
 
             <p>List a user pair (A, B) such that they have at least one common hobby:</p><br>
             <?php $sql = "SELECT h1.username FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
