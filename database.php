@@ -8,8 +8,9 @@ $login_user=true;
 $subject="";
 $description="";
 //connect_db
-$db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
-
+//$db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+//marks boof laptop connection
+$db = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
 //Registration
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
 $email = mysqli_real_escape_string($db, $_POST['email'] ?? "");
@@ -140,9 +141,13 @@ if(isset($_REQUEST["post"])){
 
     $sql = "INSERT INTO tags(tag) VALUES ('$tag')";
     mysqli_query($db, $sql);
-    }
 
     header("Location: index.php?info=added");
+    }
+    else{
+        header("Location: index.php?info=notadded");
+    }
+
     exit();
 }
 

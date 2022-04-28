@@ -97,7 +97,9 @@ if(count($errors)>2)
 </html>
 <?php    
     if(isset($_POST['Database_Initialization'])){
+        //marks boof laptop connection
       $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+      //$con = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
       // Load and explode the sql file
       $f = fopen('university.sql',"r+");
       $sqlFile = fread($f,filesize('university.sql'));

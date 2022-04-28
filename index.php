@@ -24,6 +24,9 @@ if(isset($_GET['logout'])){
                     Post Has Been Added
             </div>
             <?php } ?>
+            <?php if($_REQUEST['info'] == "notadded"){?>
+                <div>Post was not added</div>
+                <?php }?>
         <?php } ?>
     <style>h1 { text-align: center; color: black} h3 {text-align: center; color: black}</style>
         <h1>Home</h1>
