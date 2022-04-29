@@ -16,7 +16,7 @@
             <h1>Database Information</h1>
 
             <p>List All Users who have at least two blogs, Where one has Tag 'x' and One has Tag 'y':</p><br>
-
+            <?php ?>
             <div>
                <label>Tag 'x' :</label>
                   <input id="in1" type="text">
