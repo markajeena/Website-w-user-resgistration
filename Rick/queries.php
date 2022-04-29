@@ -55,18 +55,18 @@
                 <a></a>
 
             <p>Display all the users who never posted a blog:</p><br>
-            <?php $sql = "SELECT username FROM user WHERE username NOT IN (SELECT username FROM blog)";
+            <?php $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM blog)";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['userid']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
             <p>Display all the users who never posted a comment:</p><br>
-            <?php $sql = "SELECT username FROM user WHERE username NOT IN (SELECT username FROM comment)";
+            <?php $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM comment)";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['userid']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
