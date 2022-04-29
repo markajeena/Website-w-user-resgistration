@@ -16,6 +16,7 @@
             <h1>Database Information</h1>
 
             <p>List All Users who have at least two blogs, Where one has Tag 'x' and One has Tag 'y':</p><br>
+            <form method='GET'>
             <?php 
             $sql = "SELECT tag FROM tags";
             $query = mysqli_query($db, $sql);
@@ -24,23 +25,26 @@
             }
                ?>
             <div>
-               <label>Tag 'x' :</label>
-                  <select id="in1">
+               <label>Username 'x' :</label>
+                  <select name="input1" id="input1">
                      <?php 
-                     foreach($options as $o){
+                     foreach($query as $o){
                            ?>
                            <option><?php echo $o['tag'];?></option>
                            <?php } ?>
                   </select>
                Compared with
-               <label>Tag 'y' :</label>
-               <select id="in2">
+               <label>Username 'y' :</label>
+               <select name="input2" id="input2">
                      <?php 
-                     foreach($options as $o){
+                     foreach($query as $q){
                            ?>
-                           <option><?php echo $o['tag'];?></option>
-                           <?php } ?>
+                           <option><?php echo $q['tag'];?></option>
+                           <?php } 
+                           ?>
                   </select>
+                  <input type="submit" name="submit" value="users">
+                  </form>
             </div>
 
             <?php $sql = "SELECT username FROM blog GROUP BY username HAVING COUNT(username) >= 2";
@@ -71,16 +75,41 @@
             <p>List the users who are followed by both X and Y. Usernames X and Y are inputs from the user:</p><br>
             
             <div>
+            <form method='GET'>
+            <?php 
+            $sql = "SELECT username FROM user";
+            $query = mysqli_query($db, $sql);
+            if(mysqli_num_rows($query) > 0){
+               $options = mysqli_fetch_all($query);
+            }
+               ?>
+            <div>
                <label>Username 'x' :</label>
-                  <input id="in1" type="text">
+                  <select name="in1" id="in1">
+                     <?php 
+                     foreach($query as $o){
+                           ?>
+                           <option><?php echo $o['username'];?></option>
+                           <?php } ?>
+                  </select>
                Compared with
                <label>Username 'y' :</label>
-                  <input id="in2" type="text">
-            </div>
-
+               <select name="in2" id="in2">
+                     <?php 
+                     foreach($query as $q){
+                           ?>
+                           <option><?php echo $q['username'];?></option>
+                           <?php } 
+                           ?>
+                  </select>
+                  <input type="submit" name="submit" value="users">
+                  </form>
             <?php 
-            //this works for follower table just need to set up user input and replace the direct variable calls for this  *******this one********************************************************************and this one
-            $sql = "SELECT DISTINCT following FROM `follower` WHERE following IN (SELECT following FROM `follower` WHERE follower='comp440') AND following IN (SELECT following FROM `follower` WHERE follower='comp442');";
+           
+           //this works for follower table just need to set up user input and replace the direct variable calls for this  *******this one********************************************************************and this one
+           $in1 = $_GET['in1'];
+           $in2 = $_GET["in2"];
+            $sql = "SELECT DISTINCT following FROM `follower` WHERE following IN (SELECT following FROM `follower` WHERE follower='$in1') AND following IN (SELECT following FROM `follower` WHERE follower='$in2');";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
                       <div><a><?php echo $q['following']; ?></a></div>
