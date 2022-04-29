@@ -16,13 +16,31 @@
             <h1>Database Information</h1>
 
             <p>List All Users who have at least two blogs, Where one has Tag 'x' and One has Tag 'y':</p><br>
-            <?php ?>
+            <?php 
+            $sql = "SELECT tag FROM tags";
+            $query = mysqli_query($db, $sql);
+            if(mysqli_num_rows($query) > 0){
+               $options = mysqli_fetch_all($query);
+            }
+               ?>
             <div>
                <label>Tag 'x' :</label>
-                  <input id="in1" type="text">
+                  <select id="in1">
+                     <?php 
+                     foreach($options as $o){
+                           ?>
+                           <option><?php echo $o['tag'];?></option>
+                           <?php } ?>
+                  </select>
                Compared with
                <label>Tag 'y' :</label>
-                  <input id="in2" type="text">
+               <select id="in2">
+                     <?php 
+                     foreach($options as $o){
+                           ?>
+                           <option><?php echo $o['tag'];?></option>
+                           <?php } ?>
+                  </select>
             </div>
 
             <?php $sql = "SELECT username FROM blog GROUP BY username HAVING COUNT(username) >= 2";
