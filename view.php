@@ -14,7 +14,7 @@
 </head>
 <body>
 <style>body{background-image: url('pexels-photo.jpg')}</style>
-   <div class="container">
+   <div>
 
         <?php foreach($query as $q){?>
             <div>
@@ -32,20 +32,38 @@
                 </div>
 
             </div>
-            <div><p><?php echo $q['description'];?></p></div>
+            <div class="container"><p><?php echo $q['description'];?></p></div>
             <style>
                 p{
                     line-height: 2;
                     text-align: center;
-                    padding-left: 500px;
-                    padding-right: 500px}
+                    padding-left: 400px;
+                    padding-right: 400px
+                }
+                .container{
+                            position:relative;
+                            margin-left:200px;
+                            margin-right:200px;
+                            padding-bottom: 500px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+                       }
+                .space{
+                    line-height: 2
+                }
+                .commentContainer{
+                            position:relative;
+                            margin-left:200px;
+                            margin-right:200px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+                       }
             </style>
         <?php } ?>
         
       <?php foreach ($query1 as $q) {?>
+        <div class="space">
         <label>Comments:</label>
-        <p><?php echo $q['comment']; ?></p>
-
+        <div class="commentContainer"><p><?php echo $q['comment']; ?></p></div>
+      </div>
         <?php } ?>
         <div><button class="button"><a href="comment.php?blogid=<?php echo $q['blogid']?>">Add a Comment</a></button></div>
 
@@ -62,7 +80,7 @@
      button{
             position:relative;
             left:48%;
-            margin:auto;
+            margin:center;
             margin-bottom: 1%;
             text-align:center;
             position:relative;
