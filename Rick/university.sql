@@ -5,11 +5,14 @@ use `phase1`;
 --
 -- Table structure for table `department`
 --
+
+DROP TABLE IF EXISTS `follower`;
 DROP TABLE IF EXISTS `comment`;
 DROP TABLE IF EXISTS `tag`;
 DROP TABLE IF EXISTS `blog`;
 DROP TABLE IF EXISTS `hobbies`;
 DROP TABLE IF EXISTS `user`;
+
 CREATE TABLE `user`(
   `userid` bigint(20) COLLATE utf8mb4_general_ci NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -31,8 +34,8 @@ CREATE TABLE `blog` (
   `blogid` bigint(20) NOT NULL AUTO_INCREMENT,
   `subject` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `blog_date` DATE DEFAULT NULL,
   `user_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `blog_date` DATE COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`blogid`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
@@ -40,7 +43,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay','1', '2021-05-01'),('112','Pleasure to be here','I hope to talk to everyone soon','1', '2021-05-02'),('113','Not Good','I dont like this blog','2', '2021-05-03'),('114','Rice Cakes','I like rice cakes','3', '2021-05-04'),('115','This sucks','Not using this blog anymore','1', '2021-05-05');
+INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay', '2022-05-01','1'),('112','Pleasure to be here','I hope to talk to everyone soon','2022-05-01','1'),('113','Not Good','I dont like this blog','2022-05-01','2'),('114','Rice Cakes','I like rice cakes','2022-05-03','3'),('115','This sucks','Not using this blog anymore','2022-05-04','1');
 
 CREATE TABLE `comment` (
   `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -90,4 +93,18 @@ CREATE TABLE `hobbies` (
 -- Dumping data for table `hobbies`
 --
 
-INSERT INTO `hobbies` VALUES ('50','running','1'),('51','fishing','2'),('53','walking','3'),('55','hiking','4'),('56','Yugioh','4');
+INSERT INTO `hobbies` VALUES ('50','swimming','1'),('51','bowling','2'),('53','movie','3'),('55','dancing','4'),('56','cooking','4');
+
+--
+-- Table structure for table "follower"
+--
+CREATE TABLE `follower` (
+  `followerid` bigint(20) DEFAULT NULL,
+  `followingid` bigint(20) DEFAULT NULL,
+  KEY `followingid` (`followingid`),
+  CONSTRAINT `follower_ibfk_1` FOREIGN KEY (`followingid`) REFERENCES `user` (`userid`) ON DELETE SET NULL
+);
+--
+-- Dumping data for table `follower`
+--
+INSERT INTO `follower` VALUES ('2','1'),('3', '2'),('2','3'),('1','4'),('3','5');
