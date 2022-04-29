@@ -11,7 +11,7 @@ $email = "";
 
 $errors = array();
 
-$db = mysqli_connect('localhost', 'root','','phase1') or die("Connection Failed");
+$db = mysqli_connect('localhost:3307', 'root','','phase1') or die("Connection Failed");
 
 if(!isset($_POST['login'])){
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
@@ -87,11 +87,14 @@ if (isset($_POST['login'])) {
   $sql = "SELECT * FROM blog";
   $query = mysqli_query($db, $sql);
 
+  $sql = "SELECT * FROM user";
+  $query_user = mysqli_query($db, $sql);
+
 
   if(isset($_REQUEST["new_post"])){
     $subject = $_REQUEST["subject"];
     $description = $_REQUEST["description"];
-    $tag = $_REQUEST["new_post"];
+    $array = explode(',', $_REQUEST["new_post"]);
     $email = $_SESSION['email'];
 
 
@@ -102,12 +105,17 @@ if (isset($_POST['login'])) {
     $quantity = intval($result[0]);
 
     if($quantity < 2){
-      $sql = "INSERT INTO blog(subject, description, user_id) VALUES ('$subject', '$description', (SELECT userid FROM user WHERE email = '$email'))";
+      $sql = "INSERT INTO blog(subject, description, blog_date, user_id) VALUES ('$subject', '$description', NOW(), (SELECT userid FROM user WHERE email = '$email'))";
       mysqli_query($db, $sql);
 
-      $blogid = $_SESSION['blogid'];
-      $sql1 = "INSERT INTO tag(tag, blog_id) VALUES ('$tag', 111)";
-      mysqli_query($db, $sql1);
+
+      foreach($array as $tag){
+
+        $sql1 = "INSERT INTO tag(tag, blog_id) VALUES ('$tag', (SELECT blogid FROM blog ORDER BY blogid DESC LIMIT 1))";
+        mysqli_query($db, $sql1);
+
+      }
+
     }
 
 
@@ -150,7 +158,7 @@ if (isset($_POST['login'])) {
 
     if($quantity < 3 &&  $idfound1!= $idfound2){
 
-      $sql = "INSERT INTO comment(comment, sentiment, blog_id, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
+      $sql = "INSERT INTO comment(comment, sentiment, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
       mysqli_query($db, $sql);
     }
     header("Location: index.php");
@@ -166,4 +174,31 @@ if (isset($_POST['login'])) {
     $sql1 = "SELECT * FROM comment WHERE blog_id = $blogid";
     $query = mysqli_query($db, $sql);
     $query1 = mysqli_query($db, $sql1);
+  }
+
+  if(isset($_REQUEST['userid'])){
+    $followingid = $_REQUEST['userid'];
+    $email = $_SESSION['email'];
+
+    $sql = "SELECT userid FROM user WHERE email = '$email'";
+    $query1 = mysqli_query($db, $sql);
+
+    $result = $query1->fetch_array();
+    $followerid = intval($result[0]);
+
+
+    $sql = "SELECT COUNT(*) FROM follower WHERE followerid = '$followerid' AND followingid = '$followingid'";
+    $query1 = mysqli_query($db, $sql);
+
+    $result = $query1->fetch_array();
+    $count = intval($result[0]);
+
+    if($followingid != $followerid && $count <= 0){
+
+      $sql = "INSERT INTO follower(followerid, followingid) VALUES ('$followerid','$followingid')";
+      mysqli_query($db, $sql);
+
+    }
+
+
   }
