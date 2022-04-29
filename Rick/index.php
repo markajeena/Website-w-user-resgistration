@@ -35,6 +35,19 @@ if(isset($_GET['logout'])){
 
      <h3>Welcome <strong><?php echo $_SESSION['username'] ?></strong></h3>
 
+     <?php foreach ($query_user as $q) {?>
+
+       <div>
+         <a href="index.php?userid=<?php echo $q['userid']?>"><button> Follow <?php echo $q['username']?> </button></a>
+       </div>
+
+       <?php  } ?>
+
+     <div class="container mt-5">
+        <div class="text-center">
+          <a href="queries.php"><button> GO TO QUERIES </button></a>
+        </div>
+
      <div class="container mt-5">
         <div class="text-center">
           <a href="create.php"><button>+ Create a new post</button></a>
