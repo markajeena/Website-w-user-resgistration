@@ -54,6 +54,13 @@ if(count($errors)>=6)
         <input type="text" name="password2"required>
 
     </div>
+    <div>
+        
+        <label for="hobby">Hobby : </label>
+        <input type="text" name="hobby"required>
+
+    </div>
+
 
     <button class="button" id="button" type="submit" name="register_user" >Submit</button>
     <style>
