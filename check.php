@@ -26,7 +26,7 @@
             }
                ?>
             <div>
-               <label>Username 'x' :</label>
+               <label>Tag 'x' :</label>
                   <select name="input1" id="input1">
                      <?php 
                      foreach($query as $o){
@@ -35,7 +35,7 @@
                            <?php } ?>
                   </select>
                Compared with
-               <label>Username 'y' :</label>
+               <label>Tag 'y' :</label>
                <select name="input2" id="input2">
                      <?php 
                      foreach($query as $q){
