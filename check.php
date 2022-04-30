@@ -177,7 +177,7 @@ ini_set("display_errors", "off");//removes warnings and errors msgs
 
             <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
             <?php 
-            $sql = "SELECT username FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
+            $sql = "SELECT *, COUNT(username) positiveblogs FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(comment)=SUM(sentiment)) OR blogid NOT IN (SELECT blogid FROM comment) GROUP BY username"; 
             $query = mysqli_query($db,$sql);
             ?>
                    <?php foreach($query as $q){ ?>
