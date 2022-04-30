@@ -62,54 +62,6 @@ if(count($errors)>2)
 
     <p>Not A User? <a href="registration.php"><b>Register Here</b></a></p>
 </form>
-<form action='' method='POST'>
-<input id="btn "class="btn" type='submit' value='Initialize Database'name='Database_Initialization'>
-<style>
-        .btn{
-            border: solid;    
-            border-color: #5CDEFF;
-            border-radius: 10px;
-            position:relative;
-            border-color: #5CDEFF;
-            border-radius: 10px;
-            transition: .4s ease-in;
-            z-index: 1;
-            font-size: 16px;
-            background-color: white;
-            color: black;
-        }
-        .btn::before,
-        .btn::after{
-            position: absolute;
-            content: "";
-            z-index: -1;
-        }
-        .btn:hover {
-            background: #5CDEFF;
-            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
-        }
-
-    </style>
-
-</form>
 </div>
 </body>
 </html>
-<?php    
-    if(isset($_POST['Database_Initialization'])){
-        //marks boof laptop connection
-      $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
-      //$con = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
-      // Load and explode the sql file
-      $f = fopen('university.sql',"r+");
-      $sqlFile = fread($f,filesize('university.sql'));
-      $sqlArray = explode(';',$sqlFile);
-           
-      //Process the sql file by statements
-      foreach ($sqlArray as $stmt) {
-        if (strlen($stmt)>3){
-             $result = mysqli_query($con, $stmt);
-            }
-       }
-     }
-?>

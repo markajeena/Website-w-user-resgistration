@@ -57,7 +57,32 @@ if(isset($_GET['logout'])){
     <h3> Welcome <strong><?php echo $_SESSION['firstname']; ?></strong>,</h3>
     <style>body { text-align: center; background-image: url("pexels-photo.jpg")}</style>
     <div><button id="button" class="button"><a href="create.php">Post a new blog</a></button></div>
-    <button id="button" class="button"><a href="index.php?logout='1'">Log Out</a></button>
+
+    <!-- initialize DB -->
+    <form action='' method='POST'>
+    <input id="btn "class="btn" type='submit' value='Initialize Database'name='Database_Initialization'>
+    </form> 
+    <?php    
+    //Initialize DB recreation of university.sql
+    if(isset($_POST['Database_Initialization'])){
+        //marks boof laptop connection
+      $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+      //$con = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
+      // Load and explode the sql file
+      $f = fopen('university.sql',"r+");
+      $sqlFile = fread($f,filesize('university.sql'));
+      $sqlArray = explode(';',$sqlFile);
+           
+      //Process the sql file by statements
+      foreach ($sqlArray as $stmt) {
+        if (strlen($stmt)>3){
+             $result = mysqli_query($con, $stmt);
+            }
+       }
+     }
+?>
+
+    <div><button id="button" class="button"><a href="index.php?logout='1'">Log Out</a></button></div>
     <style>
         a{
             text-decoration: none;
@@ -108,6 +133,35 @@ if(isset($_GET['logout'])){
             <div><button><a href="check.php" class="button">Check all information<span class="danger">&rarr;</span></a></button></div>
     
         </div>
+
+
+        <style>
+        .btn{
+            margin-bottom: 1%;
+            border: solid;    
+            border-color: #5CDEFF;
+            border-radius: 10px;
+            position:relative;
+            border-color: #5CDEFF;
+            border-radius: 10px;
+            transition: .4s ease-in;
+            z-index: 1;
+            font-size: 16px;
+            background-color: white;
+            color: black;
+        }
+        .btn::before,
+        .btn::after{
+            position: absolute;
+            content: "";
+            z-index: -1;
+        }
+        .btn:hover {
+            background: #5CDEFF;
+            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
+        }
+
+    </style>
 
 </body>
 </html>
