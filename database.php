@@ -20,6 +20,7 @@ $password1 = mysqli_real_escape_string($db, $_POST['password1'] ?? "");
 $firstname = mysqli_real_escape_string($db, $_POST['firstname'] ?? "");
 $lastname = mysqli_real_escape_string($db, $_POST['lastname'] ?? "");
 $password2 = mysqli_real_escape_string($db, $_POST['password2'] ?? "");
+$hobby = mysqli_real_escape_string($db, $_POST['hobby'] ?? "");
 
 if(!isset($_POST['login_user'])){
 //form validation
@@ -41,10 +42,13 @@ if(empty($password1)) {
 if(empty($password2)) {
     array_push($errors, "Confirm Password is required");
 }
+if(empty($hobby)) {
+    array_push($errors, "Hobby is required");
+}
+//Check for matching Passwords
 if($password1 != $password2){
     array_push($errors, "Password Does Not Match");
 }
-
 
 // check db for existing User Name
 $user_check_query = "SELECT * FROM user WHERE username = '$username' or email = '$email' LIMIT 1";
@@ -52,6 +56,7 @@ $user_check_query = "SELECT * FROM user WHERE username = '$username' or email = 
 $results= mysqli_query($db, $user_check_query);
 $user = mysqli_fetch_assoc($results);
 
+//check for username and email availablilty
 if($user){
     if($user['username'] === $username){array_push($errors, "Username already exists");
     }
@@ -60,21 +65,32 @@ if($user){
 
 }
 
+
 //Register the user if there is no error 
 if(count($errors) == 0){
     //$password = password_hash($password1,PASSWORD_DEFAULT); //encryption
-    //print $password;
-    $query = "INSERT INTO user (username, password1, firstname, lastname, email) VALUES ('$username','$password1','$firstname','$lastname','$email')";
+    //print $password;    
 
+
+    
+    $query = "INSERT INTO user (username, password1, firstname, lastname, email) VALUES ('$username','$password1','$firstname','$lastname','$email')";
     mysqli_query($db, $query);
+    
     $_SESSION['username'] = $username;
     $_SESSION['firstname'] = $firstname;
     $_SESSION['success'] = "You are now Logged In";
+
+    $hobby = explode(', ', $_REQUEST['hobby']);    //seperates hobby after a comma
+    foreach($hobby as $h){
+        $sql = "INSERT INTO hobby(hobby,username) VALUES ('$h', '$username')";
+        mysqli_query($db, $sql);
+        }
 
     header("Location:index.php");
 
 }
 }
+
 //Login User
 
 if(isset($_POST['login_user'])){
