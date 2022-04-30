@@ -11,7 +11,9 @@ $description="";
 $db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
 //marks boof laptop connection
 //$db = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
+
 //Registration
+//mysqli_real_escape_string() helps against SQL injections 
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
 $email = mysqli_real_escape_string($db, $_POST['email'] ?? "");
 $password1 = mysqli_real_escape_string($db, $_POST['password1'] ?? "");
@@ -126,8 +128,9 @@ if(isset($_REQUEST['blogid'])){
 if(isset($_REQUEST["post"])){
     $subject = $_REQUEST["subject"];
     $description =$_REQUEST["description"];
-    $tag = $_REQUEST["tag"];
+    $tag = explode(', ', $_REQUEST['tag']);    //seperates tags after a comma
     $username = $_SESSION['username'];
+
 
     $sql = "SELECT COUNT(*) FROM blog WHERE username = (SELECT username FROM user WHERE username = '$username')";
     $count = mysqli_query($db, $sql);
@@ -139,13 +142,15 @@ if(isset($_REQUEST["post"])){
     $sql = "INSERT INTO blog(subject, description, username) VALUES ('$subject', '$description', '$username')";
     mysqli_query($db, $sql);
 
-    $sql = "INSERT INTO tags(tag) VALUES ('$tag')";
+    foreach($tag as $t){
+    $sql = "INSERT INTO tags(blogid, tag) VALUES ((SELECT blogid FROM blog ORDER BY blogid DESC LIMIT 1),'$t')";
     mysqli_query($db, $sql);
+    }
 
     header("Location: index.php?info=added");
     }
     else{
-        header("Location: index.php?info=notadded");
+    header("Location: index.php?info=notadded");
     }
 
     exit();

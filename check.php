@@ -1,4 +1,5 @@
 <?php include('database.php');
+//ini_set("display_errors", "off");
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@
             $query = mysqli_query($db,$sql);
             ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['blogid']; ?></a></div>
+                      <div><a><?php echo $q['username'], " - ", "Blog ID: ",$q['blogid']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
