@@ -1,5 +1,5 @@
 <?php include('database.php');
-//ini_set("display_errors", "off");//removes warnings and errors msgs
+ini_set("display_errors", "off");//removes warnings and errors msgs
 ?>
 
 <!DOCTYPE html>
@@ -44,22 +44,48 @@
                            <?php } 
                            ?>
                   </select>
-                  <input type="submit" name="submit" value="users">
+                  <input type="submit" name="submit" value="INPUT">
                   </form>
             </div>
 
-            <?php $sql = "SELECT username FROM blog GROUP BY username HAVING COUNT(username) >= 2";
+            <?php 
+            $input1 = $_GET['input1'];
+            $input2 = $_GET["input2"];
+            $sql = "SELECT username, COUNT(username) FROM blog GROUP BY username HAVING COUNT(username)>=2 AND username IN (SELECT username FROM blog WHERE blogid IN (SELECT blogid FROM tags WHERE tag = '$input2') OR blogid IN (SELECT blogid FROM tags WHERE tag = '$input1'))";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
                       <div><a><?php echo $q['username']; ?></a></div>
                    <?php } ?>
                 <a></a>
             <p>List all the blogs of user X, such that all the comments are positive for these blogs:</p><br>
+            
+            <div>
+            <form method='GET'>
             <?php 
-            $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))"; 
+            $sql = "SELECT username FROM user";
+            $query = mysqli_query($db, $sql);
+            if(mysqli_num_rows($query) > 0){
+               $options = mysqli_fetch_all($query);
+            }
+               ?>
+            <div>
+               <label>Username 'x' :</label>
+                  <select name="inp1" id="inp1">
+                     <?php 
+                     foreach($query as $o){
+                           ?>
+                           <option><?php echo $o['username'];?></option>
+                           <?php } ?>
+                  </select>
+                  <input type="submit" name="submit" value="INPUT">
+            <?php 
+            $inp1 = $_GET['inp1'];
+            $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment)) AND username='$inp1'"; 
             $query = mysqli_query($db,$sql);
             ?>
-                   <?php foreach($query as $q){ ?>
+
+                   <?php 
+                   foreach($query as $q){ ?>
                       <div><a><?php echo $q['username'], " - ", "Blog ID: ",$q['blogid']; ?></a></div>
                    <?php } ?>
                 
@@ -103,11 +129,9 @@
                            <?php } 
                            ?>
                   </select>
-                  <input type="submit" name="submit" value="users">
+                  <input type="submit" name="submit" value="INPUT">
                   </form>
-            <?php 
-           
-           //this works for follower table just need to set up user input and replace the direct variable calls for this  *******this one********************************************************************and this one
+            <?php            
            $in1 = $_GET['in1'];
            $in2 = $_GET["in2"];
             $sql = "SELECT DISTINCT following FROM `follower` WHERE following IN (SELECT following FROM `follower` WHERE follower='$in1') AND following IN (SELECT following FROM `follower` WHERE follower='$in2');";
@@ -118,10 +142,10 @@
                 <a></a>
 
             <p>List a user pair (A, B) such that they have at least one common hobby:</p><br>
-            <?php $sql = "SELECT h1.username FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
+            <?php $sql = "SELECT h1.username, h1.hobby FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['username'],"-", $q['hobby']; ?></a></div>
                    <?php } ?>
                 
 
