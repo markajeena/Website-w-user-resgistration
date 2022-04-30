@@ -32,38 +32,16 @@
                     <p><?php echo $q['username'], " Blog ID: ",  $q['blogid']?></p>
 
                 </div>
-            <input type="button" value="Follow">
+            <input class="button" name="follow" type="button" value="Follow">
 
             <?php 
-            //$sql="INSERT INTO follower(follower, following) VALUES ($username, 'username')";
-            // mysqli_query($db, $sql);
+            $loggedInUser = $_SESSION['username'];
+            $blogUser = $q['username'];
+            $sql = "INSERT INTO follower(follower, following) VALUES ('$loggedInUser', '$blogUser')";
+             mysqli_query($db, $sql);
             ?>
             </div>
             <div class="container"><p><?php echo $q['description'];?></p></div>
-            <style>
-                p{
-                    line-height: 2;
-                    text-align: center;
-                    padding-left: 400px;
-                    padding-right: 400px
-                }
-                .container{
-                            position:relative;
-                            margin-left:200px;
-                            margin-right:200px;
-                            padding-bottom: 500px;
-                            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
-                       }
-                .space{
-                    line-height: 2
-                }
-                .commentContainer{
-                            position:relative;
-                            margin-left:200px;
-                            margin-right:200px;
-                            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
-                       }
-            </style>
         <?php } ?>
         
       <?php foreach ($query1 as $q) {?>
@@ -80,6 +58,28 @@
    </div>
 
         <style>
+            p{
+            line-height: 2;
+            text-align: center;
+            padding-left: 400px;
+            padding-right: 400px
+            }
+            .container{
+            position:relative;
+            margin-left:200px;
+            margin-right:200px;
+            padding-bottom: 500px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+            }
+            .space{
+            line-height: 2
+            }
+            .commentContainer{
+                position:relative;
+                margin-left:200px;
+                margin-right:200px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+            }            
             a{
                 text-decoration:none;
                 color:black;
@@ -114,6 +114,32 @@
             margin:auto;
             margin-left:49%;
             text-align:center;
+        }
+        input{
+            position:relative;
+            left:48%;
+            margin:center;
+            margin-bottom: 1%;
+            text-align:center;
+            position:relative;
+            border: solid;    
+            border-color: #5CDEFF;
+            border-radius: 10px;
+            transition: .4s ease-in;
+            z-index: 1;
+            font-size: 16px;
+            background-color: transparent;
+            color: black;
+        }
+        input::before,
+        input::after{
+            position: absolute;
+            content: "";
+            z-index: -1;
+        }
+        .input:hover {
+            background: #5CDEFF;
+            box-shadow: 0 0 5px #5CDEFF, 0 0 25px #5CDEFF, 0 0 50px #5CDEFF, 0 0 200px #5CDEFF;
         }
         </style>
 </body>
