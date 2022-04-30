@@ -18,19 +18,26 @@
 
         <?php foreach($query as $q){?>
             <div>
+                <!-- Get Blog Subject -->
                 <h1><?php echo $q['subject'];?></h1>
-                <!--<div><button class="button" name="delete">Delete</button></div>-->
 
                 <style>
                 h1{text-align: center;}
-                </style>                
-                <div>
-                    <!-- <a href="edit.php?id=<#?php echo $q['id']?>" class="button" name="edit">Edit</a> -->
-                    <form method="POST">
-                        <input type="text" hidden value='<?php echo $q['id']?>' name="id">
-                    </form>
-                </div>
+                </style>         
 
+                <div>
+
+                <!-- Get Username and Blog ID -->
+                    <p>Created By: </p>
+                    <p><?php echo $q['username'], " Blog ID: ",  $q['blogid']?></p>
+
+                </div>
+            <input type="button" value="Follow">
+
+            <?php 
+            //$sql="INSERT INTO follower(follower, following) VALUES ($username, 'username')";
+            // mysqli_query($db, $sql);
+            ?>
             </div>
             <div class="container"><p><?php echo $q['description'];?></p></div>
             <style>
