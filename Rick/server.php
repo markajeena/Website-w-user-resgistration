@@ -158,7 +158,7 @@ if (isset($_POST['login'])) {
 
     if($quantity < 3 &&  $idfound1!= $idfound2){
 
-      $sql = "INSERT INTO comment(comment, sentiment, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
+      $sql = "INSERT INTO comment(comment, sentiment, blog_id, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
       mysqli_query($db, $sql);
     }
     header("Location: index.php");

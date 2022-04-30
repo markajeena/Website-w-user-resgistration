@@ -72,21 +72,21 @@
 
             <p>Display all the users who posted some comments, but each of them is negative:</p><br>
             <?php
-            $sql = "SELECT username FROM user WHERE username IN (SELECT username FROM comment GROUP BY username HAVING 0=SUM(sentiment))";
+            $sql = "SELECT userid FROM user WHERE userid IN (SELECT user_id FROM comment GROUP BY user_id HAVING 0=SUM(sentiment))";
             $query = mysqli_query($db,$sql);
             ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['userid']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
             <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
             <?php
-            $sql = "SELECT user_id FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(*)=SUM(sentiment))";
+            $sql = "SELECT user_id FROM blog WHERE blogid IN (SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(*)=SUM(sentiment))";
             $query = mysqli_query($db,$sql);
             ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username']; ?></a></div>
+                      <div><a><?php echo $q['user_id']; ?></a></div>
                    <?php } ?>
                 <a></a>
 
