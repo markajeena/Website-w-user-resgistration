@@ -38,15 +38,19 @@
                         $blogUser = $q['username'];
                     ?>
 
-                <form method="GET">
+                <form method="POST">
             <!-- Follow Will dissapear if logged in user accesses their own blog -->
-            <input id="follow" <?php if($loggedInUser == $blogUser) { ?> style="display: none" <?php } ?> class="button" name="follow" type="button" value="Follow" onclick="this.style.display='none'">
+            <input name="follow" class="button" name="follow" type="submit" value="Follow" onclick="this.style.display='none'"<?php if($blogUser == $loggedInUser){?> style="display:none;" <?php } ?>>
                 
                 </form>
 
                 <?php
+                if(isset($_POST['follow'])){
+                if($loggedInUser != $blogUser){
                     $sql = "INSERT INTO follower(follower, following) VALUES ('$loggedInUser', '$blogUser')";
                     mysqli_query($db, $sql);
+                }   
+            }
                 ?>
 
             </div>
