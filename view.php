@@ -32,17 +32,28 @@
                     <p><?php echo $q['username'], " Blog ID: ",  $q['blogid']?></p>
 
                 </div>
-            <input class="button" name="follow" type="button" value="Follow">
 
-            <?php 
-            $loggedInUser = $_SESSION['username'];
-            $blogUser = $q['username'];
-            $sql = "INSERT INTO follower(follower, following) VALUES ('$loggedInUser', '$blogUser')";
-             mysqli_query($db, $sql);
-            ?>
+                    <?php
+                        $loggedInUser = $_SESSION['username'];
+                        $blogUser = $q['username'];
+                    ?>
+
+                <form method="GET">
+            <!-- Follow Will dissapear if logged in user accesses their own blog -->
+            <input id="follow" <?php if($loggedInUser == $blogUser) { ?> style="display: none" <?php } ?> class="button" name="follow" type="button" value="Follow" onclick="this.style.display='none'">
+                
+                </form>
+
+                <?php
+                    $sql = "INSERT INTO follower(follower, following) VALUES ('$loggedInUser', '$blogUser')";
+                    mysqli_query($db, $sql);
+                ?>
+
             </div>
+
             <div class="container"><p><?php echo $q['description'];?></p></div>
-        <?php } ?>
+            
+            <?php } ?>
         
       <?php foreach ($query1 as $q) {?>
         <div class="space">
