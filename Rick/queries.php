@@ -19,6 +19,7 @@
             </form>
 
               <?php // querie 1
+                    error_reporting(E_ERROR | E_PARSE);
                     $x = $_REQUEST["tag_1"];
                     $y = $_REQUEST["tag_2"];
                     $need_x = true;
@@ -164,22 +165,20 @@
                      <?php } ?>
 
 
-              <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
-              <?php // querie 9
-                    $sql = "SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(*)=SUM(sentiment)";
-                    $query = mysqli_query($db,$sql); ?>
-
-                     <?php foreach($query as $q){
-                            $blogid = $q['blog_id'];
-                            $sql = "SELECT DISTINCT user_id FROM blog WHERE blogid = '$blogid'";
-                            $query1 = mysqli_query($db,$sql);
-
-                            $result = $query1->fetch_array();
-                            $userid = $result[0];
-
-                       ?>
-                        <div><a><?php echo $userid; ?></a></div>
-                     <?php } ?>
+            <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
+            <?php 
+            $sql = "SELECT *, COUNT(user_id) FROM blog WHERE blogid IN (SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(comment)=SUM(sentiment)) OR blogid NOT IN (SELECT blog_id FROM comment) GROUP BY user_id"; 
+            $query = mysqli_query($db,$sql);
+            ?>
+                   <?php foreach($query as $q){ 
+                      $username=$q['user_id'];
+                      $sqltotalblogs = "SELECT COUNT(user_id) FROM blog WHERE user_id='$username'";
+                      $query2 = mysqli_query($db,$sqltotalblogs);
+                      $results = mysqli_fetch_assoc($query2);
+                      if($results['COUNT(user_id)']==$q['COUNT(user_id)']){
+                     ?>
+                      <div>User ID: <a><?php echo $q['user_id']; ?></a></div>
+                   <?php }} ?>
           </div>
 
 
