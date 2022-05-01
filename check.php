@@ -1,5 +1,5 @@
 <?php include('database.php');
-ini_set("display_errors", "off");//removes warnings and errors msgs
+//ini_set("display_errors", "off");//removes warnings and errors msgs
 ?>
 
 <!DOCTYPE html>
@@ -142,10 +142,10 @@ ini_set("display_errors", "off");//removes warnings and errors msgs
                 <a></a>
 
             <p>List a user pair (A, B) such that they have at least one common hobby:</p><br>
-            <?php $sql = "SELECT h1.username, h1.hobby FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
+            <?php $sql = "SELECT h1.username user1, h1.hobby, h2.username user2, h2.hobby FROM hobby AS h1, hobby AS h2 WHERE h1.hobby=h2.hobby AND h1.username <> h2.username";
                    $query = mysqli_query($db,$sql); ?>
                    <?php foreach($query as $q){ ?>
-                      <div><a><?php echo $q['username'],"-", $q['hobby']; ?></a></div>
+                      <div><a><?php echo $q['user1'],"-", $q['user2']; ?></a></div>
                    <?php } ?>
                 
 
@@ -177,12 +177,18 @@ ini_set("display_errors", "off");//removes warnings and errors msgs
 
             <p>Display those users such that all the blogs they posted so far never received any negative comments:</p><br>
             <?php 
-            $sql = "SELECT *, COUNT(username) positiveblogs FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(comment)=SUM(sentiment)) OR blogid NOT IN (SELECT blogid FROM comment) GROUP BY username"; 
+            $sql = "SELECT *, COUNT(username) FROM blog WHERE blogid IN (SELECT blogid FROM comment GROUP BY blogid HAVING COUNT(comment)=SUM(sentiment)) OR blogid NOT IN (SELECT blogid FROM comment) GROUP BY username"; 
             $query = mysqli_query($db,$sql);
             ?>
-                   <?php foreach($query as $q){ ?>
+                   <?php foreach($query as $q){ 
+                      $username=$q['username'];
+                      $sqltotalblogs = "SELECT COUNT(username) FROM blog WHERE username='$username'";
+                      $query2 = mysqli_query($db,$sqltotalblogs);
+                      $results = mysqli_fetch_assoc($query2);
+                      if($results['COUNT(username)']==$q['COUNT(username)']){
+                     ?>
                       <div><a><?php echo $q['username']; ?></a></div>
-                   <?php } ?>
+                   <?php }} ?>
                 
 
             <button><a href="index.php"> Go Home</a></button>
