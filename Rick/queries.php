@@ -66,14 +66,23 @@
 
                   $lastid = $q['user_id'];
                   } ?>
+  <form action="queries.php" method="GET">
+              <p>List all the blogs of user <input type="text" name="user" placeholder=" 'X' ">, such that all the comments are positive for these blogs  <input type="submit"> </p><br>
+              </form>
 
-              <p>List all the blogs of user X, such that all the comments are positive for these blogs:</p><br>
-              <?php
+              <?php // querie 2
+              $x = $_REQUEST["user"];
+
+              $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(*)=SUM(sentiment))";
+              $query = mysqli_query($db,$sql);
+
               $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(*)=SUM(sentiment))";
               $query = mysqli_query($db,$sql);
               ?>
-                     <?php foreach($query as $q){ ?>
-                        <div><?php echo $q['blogid']; ?></div>
+                     <?php foreach($query as $q){
+                       $blogid = $q['blogid'];
+                       ?>
+                        <div>Blog ID: <?php echo $q['blogid']; ?></div>
                      <?php } ?>
 
 
