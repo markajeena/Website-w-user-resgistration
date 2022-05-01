@@ -1,5 +1,5 @@
 <?php include('database.php');
-//ini_set("display_errors", "off");//removes warnings and errors msgs
+ini_set("display_errors", "off");//removes warnings and errors msgs
 ?>
 
 <!DOCTYPE html>
