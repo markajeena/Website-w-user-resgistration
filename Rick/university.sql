@@ -93,7 +93,7 @@ CREATE TABLE `hobbies` (
 -- Dumping data for table `hobbies`
 --
 
-INSERT INTO `hobbies` VALUES ('50','swimming','1'),('51','bowling','2'),('53','movie','3'),('55','dancing','4'),('56','cooking','4');
+INSERT INTO `hobbies` VALUES ('50','swimming','1'),('51','bowling','2'),('53','movie','3'),('55','dancing','4'),('56','swimming','4');
 
 --
 -- Table structure for table "follower"

@@ -21,6 +21,7 @@
             </form>
 
               <?php
+                  error_reporting(E_ERROR | E_PARSE);
                     $x = $_REQUEST["tag_1"];
                     $y = $_REQUEST["tag_2"];
                     $need_x = true;
@@ -100,7 +101,7 @@
               <?php $sql = "SELECT h1.user_id FROM hobbies AS h1, hobbies AS h2 WHERE h1.hobby=h2.hobby AND h1.user_id <> h2.user_id";
                      $query = mysqli_query($db,$sql); ?>
                      <?php foreach($query as $q){ ?>
-                        <div><a><?php echo $q['username']; ?></a></div>
+                        <div>User ID: <a><?php echo $q['user_id']; ?></a></div>
                      <?php } ?>
 
 
@@ -108,7 +109,7 @@
               <?php $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM blog)";
                      $query = mysqli_query($db,$sql); ?>
                      <?php foreach($query as $q){ ?>
-                        <div><a><?php echo $q['userid']; ?></a></div>
+                        <div>User ID: <a><?php echo $q['userid']; ?></a></div>
                      <?php } ?>
 
 
@@ -116,7 +117,7 @@
               <?php $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM comment)";
                      $query = mysqli_query($db,$sql); ?>
                      <?php foreach($query as $q){ ?>
-                        <div><a><?php echo $q['userid']; ?></a></div>
+                        <div>User ID: <a><?php echo $q['userid']; ?></a></div>
                      <?php } ?>
 
 
@@ -126,7 +127,7 @@
               $query = mysqli_query($db,$sql);
               ?>
                      <?php foreach($query as $q){ ?>
-                        <div><a> User ID: <?php echo $q['user_id']; ?></a></div>
+                        <div><a> <?php echo $q['user_id']; ?></a></div>
                      <?php } ?>
 
 
