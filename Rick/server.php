@@ -11,7 +11,7 @@ $email = "";
 
 $errors = array();
 
-$db = mysqli_connect('localhost', 'root','','phase1') or die("Connection Failed");
+$db = mysqli_connect('localhost:3307', 'root','','phase1') or die("Connection Failed");
 
 if(!isset($_POST['login'])){
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
@@ -98,7 +98,7 @@ if (isset($_POST['login'])) {
     $email = $_SESSION['email'];
 
 
-    $sql = "SELECT COUNT(*) FROM blog WHERE user_id = (SELECT userid FROM user WHERE email = '$email')";
+    $sql = "SELECT COUNT(*) FROM blog WHERE user_id = (SELECT userid FROM user WHERE email = '$email'AND blog_date = CURDATE())";
     $count = mysqli_query($db, $sql);
 
     $result = $count->fetch_array();
@@ -127,7 +127,6 @@ if (isset($_POST['login'])) {
 
     $comment = $_REQUEST["comment"];
     $rating =  $_REQUEST["sentiment"];
-    $username = $_SESSION['username'];
     $blogid = $_SESSION['blogid'];
     $email = $_SESSION['email'];
 
@@ -138,7 +137,7 @@ if (isset($_POST['login'])) {
       $sentiment = 0;
     }
 
-    $sql = "SELECT COUNT(*) FROM comment WHERE user_id = (SELECT userid FROM user WHERE email = '$email')";
+    $sql = "SELECT COUNT(*) FROM comment WHERE user_id = (SELECT userid FROM user WHERE email = '$email') AND comment_date = CURDATE()";
     $count = mysqli_query($db, $sql);
 
     $result = $count->fetch_array();
@@ -150,15 +149,21 @@ if (isset($_POST['login'])) {
     $result = $id->fetch_array();
     $idfound1 = $result[0];
 
-    $sql = "SELECT userid FROM user WHERE username = '$username'";
+    $sql = "SELECT userid FROM user WHERE email = '$email'";
     $id = mysqli_query($db, $sql);
 
     $result = $id->fetch_array();
     $idfound2 = $result[0];
 
-    if($quantity < 3 &&  $idfound1!= $idfound2){
+    $sql = "SELECT COUNT(*) FROM comment WHERE blog_id = '$blogid' AND user_id = '$idfound2'";
+    $query = mysqli_query($db, $sql);
 
-      $sql = "INSERT INTO comment(comment, sentiment, blog_id, user_id) VALUES ('$comment', $sentiment, '$blogid',  (SELECT userid FROM user WHERE username = '$username'))";
+    $result = $query->fetch_array();
+    $limit_1 = intval($result[0]);
+
+    if($quantity < 3 &&  $idfound1!= $idfound2 && $limit_1 <= 0){
+
+      $sql = "INSERT INTO comment(comment, sentiment, comment_date, blog_id, user_id) VALUES ('$comment', $sentiment, NOW(), '$blogid',  '$idfound2')";
       mysqli_query($db, $sql);
     }
     header("Location: index.php");
@@ -199,6 +204,5 @@ if (isset($_POST['login'])) {
       mysqli_query($db, $sql);
 
     }
-
 
   }
