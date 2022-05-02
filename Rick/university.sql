@@ -49,6 +49,7 @@ CREATE TABLE `comment` (
   `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
   `comment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `sentiment` BOOLEAN COLLATE utf8mb4_general_ci NOT NULL,
+  `comment_date` DATE DEFAULT NULL,
   `blog_id` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`commentid`),
@@ -58,7 +59,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','1' ,'111','4'),('105','Lets be Friends!','1' ,'111','2'),('123','Hiiiiiiiiiiii','1' ,'112','3'),('127','I love waffles','1' ,'113' ,'3'),('130','I dont lose','0' ,'114','1');
+INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','1' , '2022-05-01','111','4'),('105','Lets be Friends!','1' ,'2022-05-02','111','2'),('123','Hiiiiiiiiiiii','1' ,'2022-05-02','112','3'),('127','I love waffles','1' ,'2022-05-05','113' ,'3'),('130','I dont lose','0' ,'2022-05-03','114','1');
 
 
 --
