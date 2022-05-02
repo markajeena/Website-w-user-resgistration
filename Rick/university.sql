@@ -43,7 +43,7 @@ CREATE TABLE `blog` (
 --
 -- Dumping data for table `blog`
 --
-INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay', '2022-05-01','1'),('112','Pleasure to be here','I hope to talk to everyone soon','2022-05-01','1'),('113','Not Good','I dont like this blog','2022-05-01','2'),('114','Rice Cakes','I like rice cakes','2022-05-03','3'),('115','This sucks','Not using this blog anymore','2022-05-04','1');
+INSERT INTO `blog` VALUES ('111','Hi There','Welcome to the blog. Please enjoy your stay', '2022-05-01','1'),('112','Pleasure to be here','I hope to talk to everyone soon','2022-05-01','1'),('113','Not Good','I dont like this blog','2022-05-01','2'),('114','Rice Cakes','I like rice cakes','2022-05-03','3'),('115','This sucks','Not using this blog anymore','2022-05-01','2');
 
 CREATE TABLE `comment` (
   `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -58,7 +58,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`userid`) ON DELETE SET NULL
 
 );
-INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','1' ,'111','1'),('105','Lets be Friends!','1' ,'111','2'),('123','Hiiiiiiiiiiii','1' ,'112','3'),('127','I love waffles','1' ,'113' ,'3'),('130','I dont lose','0' ,'114','1');
+INSERT INTO `comment` VALUES ('101','Hi there Nice to meet you','1' ,'111','4'),('105','Lets be Friends!','1' ,'111','2'),('123','Hiiiiiiiiiiii','1' ,'112','3'),('127','I love waffles','1' ,'113' ,'3'),('130','I dont lose','0' ,'114','1');
 
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `hobbies` (
 -- Dumping data for table `hobbies`
 --
 
-INSERT INTO `hobbies` VALUES ('50','swimming','1'),('51','bowling','2'),('53','movie','3'),('55','dancing','4'),('56','swimming','4');
+INSERT INTO `hobbies` VALUES ('50','swimming','1'),('51','bowling','2'),('53','movie','3'),('55','movie','4'),('56','cooking','4');
 
 --
 -- Table structure for table "follower"
@@ -107,4 +107,4 @@ CREATE TABLE `follower` (
 --
 -- Dumping data for table `follower`
 --
-INSERT INTO `follower` VALUES ('2','1'),('3', '2'),('2','3'),('1','4'),('3','5');
+INSERT INTO `follower` VALUES ('3','4'),('2', '5'),('2','4'),('1','4'),('1','5');
