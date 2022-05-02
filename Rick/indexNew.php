@@ -19,66 +19,66 @@ if(isset($_GET['logout'])){
 
 <?php include("server.php") ?>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="utf-8">
-    <title> NEW POST</title>
-  </head>
-  <body>
-
-    <style>
-      body { background-color: rgba(0, 128, 0, 0.3) }
-    </style>
-    <div class="login-page">
+ <!DOCTYPE html>
+ <html lang="en" dir="ltr">
+   <head>
+     <link rel="stylesheet" href="style.css" />
+     <meta charset="utf-8">
+     <title> Home Page </title>
+   </head>
+   <div class="login-page">
     <div class="form">
-  <div class="create-header">
-              <h3>Create a Blog Post!</h3>
+   <body>
+
+     <style>
+         body { background-color: rgba(0, 128, 0, 0.3) }
+       </style>
+
+     <?php if(isset($_SESSION['username'])) : ?>
+
+     <h3>Welcome <strong><?php echo $_SESSION['username'] ?></strong></h3>
+
+     <?php foreach ($query_user as $q) {?>
+
+       <div>
+         <a href="index.php?userid=<?php echo $q['userid']?>"><button> Follow <?php echo $q['username']?> </button></a>
+       </div>
+
+       <?php  } ?>
+
+     <div class="container mt-5">
+        <div class="text-center">
+          <a href="queries.php"><button> GO TO QUERIES </button></a>
+        </div>
+
+     <div class="container mt-5">
+        <div class="text-center">
+          <a href="create.php"><button>+ Create a new post</button></a>
+        </div>
+
+        <?php foreach ($query as $q) {?>
+          <div class="card">
+
+            <div>
+              <h3><?php echo $q['subject'] ?></h3>
             </div>
 
-    <div class="container mt-5">
-      <form method="GET">
+            <div class="container">
+              <?php echo $q['description'] ?>
+            </div>
 
-        <div>
-    
-          <input type="text" name="subject" placeholder="Title/Subject" class ="form-control bg-dark text-white my-3 text-center">
-        </div>
-
-        <div>
-          <textarea name="description" placeholder="Type in a description for your post!" class="form-control bg-dark text-white my-3"></textarea>
-        </div>
-
-        <div>
-           
-          <input type="text" name="new_post" placeholder="Tags (i.e. Fun,Data,...)" class ="form-control bg-dark text-white my-3 text-center">
-        </div>
-
-        <div>
-          <button class="btn btn-dark">Add Post</button>
-        </div>
-
-      </form>
-      <style>
-            h1 {margin-top: 20px; margin-bottom: 20px; text-align-last: center;}
-            label{text-align-last: center;}
-            select{margin-bottom: 20px; text-align-last: center;}
-            form{text-align: center;}
-            textarea{margin: 20px 0 20px 0; width:100%; height:100px}
-            a{text-decoration: none;}
-            button{
-            margin-top: 20px; margin-bottom: 20px;
-            position: relative;
-            font-size: 12px;
-            background-color: white;
-            color: black;
-            }
-            
-            </style>
-    </div>
+            <hr size = 3 color = black>
+            <a href="view.php?blogid=<?php echo $q['blogid']?>"><button> View Post </button></a>
+          </div>
 
 
-    </div>
-    </div>
-  </body>
-</html>
+        <?php  } ?>
+
+      </div>
+
+   <?php endif ?>
+     </div>
+     </div>
+      </div>
+   </body>
+ </html>
