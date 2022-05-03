@@ -148,14 +148,14 @@ if(isset($_REQUEST["post"])){
     $username = $_SESSION['username'];
 
 
-    $sql = "SELECT COUNT(*) FROM blog WHERE username = (SELECT username FROM user WHERE username = '$username')";
+    $sql = "SELECT COUNT(*) FROM blog WHERE username = (SELECT username FROM user WHERE username = '$username') AND blogDate = CURDATE()";
     $count = mysqli_query($db, $sql);
 
     $result = $count->fetch_array();
     $quantity = intval($result[0]);
 
     if($quantity < 2){
-    $sql = "INSERT INTO blog(subject, description, username) VALUES ('$subject', '$description', '$username')";
+    $sql = "INSERT INTO blog(subject, description, blogDate, username) VALUES ('$subject', '$description', NOW(), '$username')";
     mysqli_query($db, $sql);
 
     foreach($tag as $t){
@@ -192,7 +192,7 @@ $limit = 3;
             else{
             $sentiment = 0;
             }
-            $sql = "SELECT COUNT(*) FROM comment WHERE (username = (SELECT username FROM user WHERE username = '$username'))";
+            $sql = "SELECT COUNT(*) FROM comment WHERE (username = (SELECT username FROM user WHERE username = '$username')) AND commentdate = CURDATE()";
             $count = mysqli_query($db, $sql);
 
             $result = $count->fetch_array();
@@ -211,7 +211,7 @@ $limit = 3;
             $idfound2 = $result[0];
 
             if($quantity < 3 &&  $idfound1!= $idfound2){
-            $sql = "INSERT INTO comment(comment, sentiment, blogid, username) VALUES ('$comment', $sentiment, '$blogid', '$username')";
+            $sql = "INSERT INTO comment(comment, sentiment, blogid, username, commentdate) VALUES ('$comment', $sentiment, '$blogid', '$username', NOW())";
             mysqli_query($db, $sql);
             header("Location: index.php?c=added");
             }
