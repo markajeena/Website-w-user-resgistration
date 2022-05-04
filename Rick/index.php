@@ -77,6 +77,8 @@ if(isset($_GET['logout'])){
       </div>
 
    <?php endif ?>
+  </div>
+  </div>
 
    </body>
  </html>
