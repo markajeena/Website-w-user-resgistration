@@ -4,6 +4,8 @@
 <html>
 
     <head>
+      <link rel="stylesheet" href="style.css" />
+       <meta charset="utf-8">
         <title>QUERIES</title>
     </head>
 
@@ -13,6 +15,8 @@
           <style>
             body { background-color: rgba(0, 128, 0, 0.3) }
           </style>
+          <div class="login-page">
+    <div class="form">
 
             <form action="queries.php" method="GET">
             <p>List All Users who have at least two blogs, Where one has Tag <input type="text" name="tag_1" placeholder=" 'X' "> and One has Tag <input type="text" name="tag_2" placeholder=" 'Y' ">  <input type="submit"></p>
@@ -184,6 +188,8 @@
 
             <button><a href="index.php"> Go Home </a></button>
         </body>
+          </div>
+            
 
 
 </html>
