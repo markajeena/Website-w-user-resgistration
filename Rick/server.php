@@ -11,7 +11,7 @@ $email = "";
 
 $errors = array();
 
-$db = mysqli_connect('localhost:3307', 'root','','phase1') or die("Connection Failed");
+$db = mysqli_connect('localhost', 'root','','phase1') or die("Connection Failed");
 
 if(!isset($_POST['login'])){
 $username = mysqli_real_escape_string($db, $_POST['username'] ?? "");
@@ -54,7 +54,7 @@ if(count($errors) == 0 ){
   header('Location: index.php');
 }
 }
-
+//Login page
 if (isset($_POST['login'])) {
 
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -90,7 +90,7 @@ if (isset($_POST['login'])) {
   $sql = "SELECT * FROM user";
   $query_user = mysqli_query($db, $sql);
 
-
+//Create a blog
   if(isset($_REQUEST["new_post"])){
     $subject = $_REQUEST["subject"];
     $description = $_REQUEST["description"];
@@ -122,7 +122,7 @@ if (isset($_POST['login'])) {
   header("Location: index.php");
     exit();
   }
-
+//Create a comment
   if(isset($_REQUEST["comment"])){
 
     $comment = $_REQUEST["comment"];
@@ -170,7 +170,7 @@ if (isset($_POST['login'])) {
     exit();
 
   }
-
+//Blog display
   if(isset($_REQUEST['blogid'])){
     $blogid = $_REQUEST['blogid'];
     $_SESSION['blogid'] = $blogid;
@@ -180,7 +180,7 @@ if (isset($_POST['login'])) {
     $query = mysqli_query($db, $sql);
     $query1 = mysqli_query($db, $sql1);
   }
-
+//Follower system
   if(isset($_REQUEST['userid'])){
     $followingid = $_REQUEST['userid'];
     $email = $_SESSION['email'];

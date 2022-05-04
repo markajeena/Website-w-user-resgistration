@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 session_start();
 if(!isset($_SESSION['username'])){
 
@@ -55,7 +55,7 @@ if(isset($_GET['logout'])){
         <div class="text-center">
           <a href="create.php"><button>+ Create a new post</button></a>
         </div>
-
+      </div>
         <?php foreach ($query as $q) {?>
           <div class="card">
 
@@ -70,15 +70,13 @@ if(isset($_GET['logout'])){
             <hr size = 3 color = black>
             <a href="view.php?blogid=<?php echo $q['blogid']?>"><button> View Post </button></a>
           </div>
-          </div>
+      
 
         <?php  } ?>
 
       </div>
 
    <?php endif ?>
-  </div>
-  </div>
 
    </body>
  </html>
