@@ -22,6 +22,7 @@ if(isset($_GET['logout'])){
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
+      <link rel="stylesheet" href="style.css" />
      <meta charset="utf-8">
      <title> Home Page </title>
    </head>
@@ -30,6 +31,8 @@ if(isset($_GET['logout'])){
      <style>
          body { background-color: rgba(0, 128, 0, 0.3) }
        </style>
+     <div class="login-page">
+    <div class="form">
 
      <?php if(isset($_SESSION['username'])) : ?>
 
@@ -67,7 +70,7 @@ if(isset($_GET['logout'])){
             <hr size = 3 color = black>
             <a href="view.php?blogid=<?php echo $q['blogid']?>"><button> View Post </button></a>
           </div>
-
+          </div>
 
         <?php  } ?>
 
