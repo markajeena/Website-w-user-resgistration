@@ -1,16 +1,21 @@
 <?php include("server.php") ?>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
+     <link rel="stylesheet" href="style.css" />
      <meta charset="utf-8">
-     <title> Blog Page </title>
+     <title> BLOG PAGE </title>
    </head>
    <body>
 
      <style>
          body { background-color: rgba(0, 128, 0, 0.3) }
        </style>
+     <div class="login-page">
+      <div class="form">
+    <div class="login">
+            <div class="login-header">
 
        <?php foreach ($query as $q) {?>
 
@@ -29,8 +34,11 @@
       <?php foreach ($query1 as $q) {?>
 
         <p> Comment: <?php echo $q['comment']; ?></p>
-
+        
      <?php } ?>
-
+      </div>
+      <button><a href="index.php"> Go Home</a></button>
+        </div>
+     </div>
+     
    </body>
- </html>

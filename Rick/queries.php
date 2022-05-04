@@ -4,6 +4,8 @@
 <html>
 
     <head>
+      <link rel="stylesheet" href="style.css" />
+      <meta charset="utf-8">
         <title>QUERIES</title>
     </head>
 
@@ -13,6 +15,8 @@
           <style>
             body { background-color: rgba(0, 128, 0, 0.3) }
           </style>
+          <div class="login-page">
+            <div class="form">
 
             <form action="queries.php" method="GET">
             <p>List All Users who have at least two blogs, Where one has Tag <input type="text" name="tag_1" placeholder=" 'X' "> and One has Tag <input type="text" name="tag_2" placeholder=" 'Y' ">  <input type="submit"></p>
@@ -72,7 +76,7 @@
               <p>List all the blogs of user <input type="text" name="user" placeholder=" 'X' ">, such that all the comments are positive for these blogs  <input type="submit"> </p><br>
               </form>
 
-              <?php // querie 2
+              <?php // query 2
               $x = $_REQUEST["user"];
 
               $sql = "SELECT * FROM blog WHERE blogid IN (SELECT blog_id FROM comment GROUP BY blog_id HAVING COUNT(*)=SUM(sentiment))";
@@ -91,7 +95,7 @@
 
 
               <p>List the users who posted the most number of blogs on 5/1/2022; if there is a tie, list all the users who have a tie:</p><br>
-              <?php // querie 3
+              <?php // query 3
 
                     $sql = "SELECT user_id, COUNT(user_id) FROM blog WHERE blogid IN( SELECT blogid FROM blog WHERE blog_date = '2022-05-01' ) GROUP BY user_id HAVING COUNT(user_id) =( SELECT MAX(mycount) FROM ( SELECT user_id, COUNT(user_id) mycount FROM blog WHERE blogid IN( SELECT blogid FROM blog WHERE blog_date = '2022-05-01' ) GROUP BY user_id ) AS maxcount )";
                     $query = mysqli_query($db,$sql); ?>
@@ -104,7 +108,7 @@
               <p>List the users who are followed by both <input type="text" name="user_1" placeholder=" 'X' "> and <input type="text" name="user_2" placeholder=" 'Y' "> <input type="submit"> </p><br>
               </form>
 
-              <?php // querie 4
+              <?php // query 4
               $x = $_REQUEST["user_1"];
               $y = $_REQUEST["user_2"];
 
@@ -116,7 +120,7 @@
 
 
               <p>List a user pair (A, B) such that they have at least one common hobby:</p><br>
-              <?php // querie 5
+              <?php // query 5
                     $isA = true;
                     $sql = "SELECT h1.user_id FROM hobbies AS h1, hobbies AS h2 WHERE h1.hobby=h2.hobby AND h1.user_id <> h2.user_id";
                     $query = mysqli_query($db,$sql); ?>
@@ -138,7 +142,7 @@
 
 
               <p>Display all the users who never posted a blog:</p><br>
-              <?php // querie 6
+              <?php // query 6
                     $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM blog)";
                     $query = mysqli_query($db,$sql); ?>
                      <?php foreach($query as $q){ ?>
@@ -147,7 +151,7 @@
 
 
               <p>Display all the users who never posted a comment:</p><br>
-              <?php // querie 7
+              <?php // query 7
                     $sql = "SELECT userid FROM user WHERE userid NOT IN (SELECT user_id FROM comment)";
                     $query = mysqli_query($db,$sql); ?>
                      <?php foreach($query as $q){ ?>
@@ -156,7 +160,7 @@
 
 
               <p>Display all the users who posted some comments, but each of them is negative:</p><br>
-              <?php // querie 8
+              <?php // query 8
                     $sql = "SELECT userid FROM user WHERE userid IN (SELECT user_id FROM comment GROUP BY user_id HAVING 0=SUM(sentiment))";
                     $query = mysqli_query($db,$sql);
               ?>
@@ -184,6 +188,7 @@
 
             <button><a href="index.php"> Go Home </a></button>
         </body>
+                      </div>
 
 
 </html>

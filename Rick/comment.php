@@ -34,6 +34,7 @@
                 <button class="btn btn-dark">Add Comment</button>
         
             </form>
+            <button><a href="index.php"> Go Home</a></button>
           </div>
 </div>
 
