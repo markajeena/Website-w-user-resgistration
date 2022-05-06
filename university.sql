@@ -71,7 +71,7 @@ CREATE TABLE `tags` (
 --
 -- Dumping data for table `tags`
 --
-INSERT INTO `tags` VALUES ('105','NewBlog'),('101','Friendly'),('123','Bored'),('127','Fun, GreatTime'),('130','Leavinglol');
+INSERT INTO `tags` VALUES ('105','NewBlog'),('101','Friendly'),('123','Bored'),('127','Fun'),('127','Great Time'),('130','Leavinglol');
 
 --
 -- Table structure for table "hobby"
@@ -101,4 +101,4 @@ CREATE TABLE `follower` (
 --
 -- Dumping data for table `follower`
 --
-INSERT INTO `follower` VALUES ('comp440','comp442'),('comp440', 'comp441'),('comp442','comp441'),('comp441','comp443'),('comp443','comp444');
+INSERT INTO `follower` VALUES ('comp440','comp442'),('comp440', 'comp441'),('comp442','comp441'),('comp441','comp442'),('comp443','comp444');

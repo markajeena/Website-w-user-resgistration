@@ -25,7 +25,7 @@ if(isset($_GET['logout'])){
                 <h2>Post Has Been Added</h2>
             <?php } ?>
             <?php if($_REQUEST['info'] == "notadded"){?>
-                <h2>Post was not added</h2>
+                <h2>Post was not added due to limit reached</h2>
                 <?php }?>
         <?php } ?>
 <!-- header msgs for comments-->
@@ -34,7 +34,7 @@ if(isset($_GET['logout'])){
                     <h2>Comment has been added</h2>
                     <?php } ?>
                 <?php if($_REQUEST['c'] =="notadded"){?>
-                    <h2>comment not added</h2>
+                    <h2>Comment not added</h2>
                     <?php } ?>
             <?php } ?>
 
@@ -66,8 +66,8 @@ if(isset($_GET['logout'])){
     //Initialize DB recreation of university.sql
     if(isset($_POST['Database_Initialization'])){
         //marks boof laptop connection
-      $con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
-      //$con = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
+      //$con = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
+      $con = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
       // Load and explode the sql file
       $f = fopen('university.sql',"r+");
       $sqlFile = fread($f,filesize('university.sql'));
@@ -122,7 +122,7 @@ if(isset($_GET['logout'])){
                        .container{
                             position:relative;
                             margin:auto;
-                            margin-left: 44%;
+                            margin-left: 42%;
                             margin-bottom: 50px;
                             width: 250px;
                             padding: 16px 0;
