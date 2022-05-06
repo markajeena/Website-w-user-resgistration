@@ -8,9 +8,7 @@ $login_user=true;
 $subject="";
 $description="";
 //connect_db
-//$db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
-//marks boof laptop connection
-$db = mysqli_connect('localhost:3307','root','','user_registration') or die("No Connection to the Database");
+$db = mysqli_connect('localhost','root','','user_registration') or die("No Connection to the Database");
 
 //Registration
 //mysqli_real_escape_string() helps against SQL injections 
