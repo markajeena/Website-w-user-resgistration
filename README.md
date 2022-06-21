@@ -1,8 +1,5 @@
 # Login-System
-'
-'
-'
-'
+
 Phase 1: 
 A simple User Registration that asks for username, password1, confirm password, firstname, lastname, and email. 
 No duplicates usernames and emails, passwords must match. Once Logged in you should be welcomed in a logged in page.
@@ -16,3 +13,4 @@ Phase 3: Queries
 
 
 
+Used: PHP, SQL, HTML/CSS/JS. XAMPP was also used to have Apache as well as a accessible SQL database, ran locally.
