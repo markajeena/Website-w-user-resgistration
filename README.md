@@ -14,3 +14,10 @@ Phase 3: Queries
 
 
 Used: PHP, SQL, HTML/CSS/JS. XAMPP was also used to have Apache as well as a accessible SQL database, ran locally.
+
+Credit for Helping Build the website:
+
+Mark Ajina
+Jesus Garcia
+Andre Obispo 
+Ricardo Carrillo
